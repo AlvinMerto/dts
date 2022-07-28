@@ -38,6 +38,10 @@ Route::get("/", function(){
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get("/test",function(){
+	echo "hello world";
+});
+
 Auth::routes();
 
 //\\hide external//\\
