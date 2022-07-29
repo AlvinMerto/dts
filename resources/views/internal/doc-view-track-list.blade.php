@@ -25,10 +25,12 @@
 
 <script>
 $(document).ready(function(e){
-        $(function() {
+    $(function() {
         $(".preload").fadeOut(100, function() {
             $(".content").fadeIn(100);        
         });
+
+
     });
 
 });
@@ -69,6 +71,48 @@ $(document).ready(function(e){
     min-width: 100%;
     border: 0;
 }
+
+.theboxtab {
+    width: 100%;
+    overflow-x: auto;
+}
+    
+.theboxtab ul {
+   width: auto;
+    padding: 0px;
+    display: flex;
+    border-bottom: 1px solid #3490dc;
+}
+
+.theboxtab ul li{
+    display: inline-block;
+    background: #e3e3e3;
+    padding: 11px;
+    margin-right: 4px;
+    border-radius: 0px;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.theboxtab ul li a {
+     font-size: 15px;
+}
+
+.theboxtab ul li:hover {
+    background: #ccc;
+    cursor: pointer;
+}
+
+.perrow {
+    display: flex;
+}
+
+.perrow div{
+    border: 1px solid #ccc;
+    padding: 7px;
+    margin-right: 5px;
+}
 </style>
 
 <input type="hidden" name="type_input" id="type_input" value="internal">
@@ -81,14 +125,14 @@ $(document).ready(function(e){
 
                         <section style="width: 100%">
                         <!--Content-->
-    						<table style="align-self: center; table-layout: inherit;">
-    							
-    					        @if($data->count()>0)
+                            <table style="align-self: center; table-layout: inherit;">
+                                
+                                @if($data->count()>0)
                                 @foreach($data as $d)
                                 
                                 @endforeach
                                 @endif
-    							
+                                
                                     @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
     
                                         <tr class="border_bottom">
@@ -188,34 +232,103 @@ $(document).ready(function(e){
                                         </tr>
 
                                     </table>
-                                       <table style="width: 100%;" class="mt-4">
-                                       <tr>
+                                    <h4> History of Actions </h4>
+                                    <?php // var_dump($data); 
+                                        // $data_arr = (array) $data;
+                                    ?>
+                                        @if($data->count()>0)
+                                            <?php 
+                                                $display = [];
+                                                    foreach($data as $d) {
+                                                        if (!in_array($d->date_ff,$display)) {
+                                                            array_push($display, $d->date_ff);
+                                                        }
+                                                    }
+                                            ?>
+
+                                            <div class='theboxtab'>
+                                                <ul>
+                                                    <?php 
+                                                        foreach($display as $ddd) {
+                                                            $url = url()->current();
+                                                            echo "<li>";
+                                                                echo "<a href='{$url}/?date=".date("mdY",strtotime($ddd))."'>".date("M. d, Y", strtotime($ddd))."</a>";
+                                                            echo "</li>";
+                                                        }
+                                                    ?>
+                                                </ul>
+                                            </div>
+                                        @endif
+                                       
+                                            <?php 
+                                                if (isset($_GET['date'])) {
+                                                    $thedate = $_GET['date'];
+
+                                                    echo "<h4> Latest Update ------ </h4>";
+
+                                                    for($i = 0;$i<=count($data)-1; ++$i) {
+                                                        if ( date("mdY", strtotime($data[$i]->date_ff)) == $thedate ) { 
+                                                            if ($i == 1) {
+                                                            ?>
+                                                            <div class='perrow'>
+                                                                <div>
+                                                                    <p> Document From: {{$data[$i]->destination}} </p>
+                                                                    <p> Actions: </p>
+                                                                    <p> {!! nl2br($data[$i]->remarks) !!} </p>
+                                                                </div>
+                                                                <div>        
+                                                                    <p> {{ $data[$i]->date_forwared }} </p>
+                                                                    <p> {{ $data[$i]->stat }} </p>
+                                                                    <p> {{$data[$i]->days_count}} </p>
+                                                                        <!--td align="left" style="white-space: pre-wrap;">{!! nl2br($data[$i]->remarks) !!}</td-->
+                                                                </div>
+                                                            </div>
+                                                <?php       } else {
+                                                            ?>
+                                                                <tr class="border_bottom">
+                                                                    <td> Previous Update ------ </td>
+                                                                    <td align="center" >
+                                                                        {{$data[$i]->destination}}
+                                                                    </td>
+                                                                    <td align="left" >{{ $data[$i]->date_forwared }}</td>
+                                                                    <td align="left" style="white-space: pre-wrap;">{{ $data[$i]->stat }}</td>
+                                                                    <td align="center" >{{$data[$i]->days_count}}</td>
+                                                                    <td align="left" style="white-space: pre-wrap;">{!! nl2br($data[$i]->remarks) !!}</td>
+                                                                </tr>
+                                                <?php
+                                                            } 
+                                                        } 
+                                                    }
+                                                }
+                                            ?>
+                                        <table style="width: 100%;" class="mt-4">
+                                       <!--tr>
                                            <td align="center" class="card-header" style="padding: 10px; color: #fff; font-weight: bold; font-size: 13px !important; background: #585858; border-top: 1px solid #0040FF; border-bottom: 1px solid #0040FF; width: 40%;">Forwarded to</td>
                                            <td align="center" class="card-header" style="padding: 10px; color: #fff; font-weight: bold; font-size: 13px !important; background: #585858; border-top: 1px solid #0040FF; border-bottom: 1px solid #0040FF;">Date Forwarded</td>
                                            <td align="center" class="card-header" style="padding: 10px; color: #fff; font-weight: bold; font-size: 13px !important; background: #585858; border-top: 1px solid #0040FF; border-bottom: 1px solid #0040FF; width: 6%;">Status</td>
                                            <td align="center" class="card-header" style="padding: 10px; color: #fff; font-weight: bold; font-size: 13px !important; background: #585858; border-top: 1px solid #0040FF; border-bottom: 1px solid #0040FF;">No. of Days</td>
                                            <td align="center" class="card-header" style="padding: 10px; color: #fff; font-weight: bold; font-size: 13px !important; background: #585858; border-top: 1px solid #0040FF; border-bottom: 1px solid #0040FF; width: 10%;">Action</td>
-                                       </tr>
+                                       </tr-->
                                        @if($data->count()>0)
                                         @foreach($data as $d)
-                                        <tr class="border_bottom">
+                                        <!--tr class="border_bottom">
                                             <td align="center" >{{$d->destination}}</td>
                                             <td align="left" >{{ $d->date_forwared }}</td>
                                             <td align="left" style="white-space: pre-wrap;">{{ $d->stat }}</td>
                                             <td align="center" >{{$d->days_count}}</td>
                                             <td align="left" style="white-space: pre-wrap;">{!! nl2br($d->remarks) !!}</td>
-                                        </tr>
+                                        </tr-->
                                         @endforeach
                                         @endif
                                         <input type="hidden" name="img_src" id="img_src" value="{{ url('/uploads') }}/{{ $d->image }}">
-                                        <tr>
+                                        <!--tr>
                                             <td colspan="5" align="center" >
                                                 <a href="{{ url('/uploads') }}/{{ $d->image }}" data-lightbox="{{ $d->image }}" data-title="" style="text-decoration: none; margin-right: 10px; color: #fff;">
                                                     <div id="image-holder" class="photo-container" style="float: right; display: none;"><img id="image" class="photo-info ml-5 mt-1" src="" style="height: 105px; border: 1px solid #08298A; margin: 5px;box-shadow:2px 5px 5px #585858;-moz-box-shadow:2px 5px 5px #585858;-webkit-box-shadow:2px 5px 5px #585858;"/></div><br>
                                                     <div id="err"></div>
                                                 </a>
                                             </td>
-                                        </tr>
+                                        </tr-->
                                     @elseif($d->confi_name != Auth::user()->f_name && $d->classification == 1)
                                         <tr>
                                             <td colspan="7" align="center" style="font-size: 30px !important; color: #ff0000; font-style: bold !important;">Oppppsss!! This document is not for you!!!</td>
@@ -363,7 +476,7 @@ $(document).ready(function(e){
                                                 <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-success"><i class="fa fa-edit"></i> Back</a>
                                         @endif
                                     </tr>
-    						</table>
+                            </table>
 
                             @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
                                 <div><span class="fa fa-paperclip"></span> Attachments</div>
