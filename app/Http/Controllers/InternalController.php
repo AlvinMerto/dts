@@ -1400,7 +1400,7 @@ class InternalController extends Controller
                 $diff,
                 $request->get('division'),
                 'pending',
-                Auth::user()->f_name. ' from '. Auth::user()->division.' Forwarded to '.$request->get('division'),
+                Auth::user()->f_name. ' forwarded this document to '.$request->get('confi'),
                 $request->get('_classification'),
                 0,
 

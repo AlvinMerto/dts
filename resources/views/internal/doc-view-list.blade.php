@@ -578,6 +578,7 @@ $(document).ready(function(e){
                                 }
                             ?>
                         </select>
+
                         <input list="divisions" placeholder="Division" name="ff_divisions" id="ff_divisions" class="form-control" onchange="getUserList(this);" style='display:none;'>
                         <datalist id="divisions">
                             @if($div->count()>0)
@@ -812,6 +813,8 @@ $(document).ready(function(e){
             var defval = $(document).find("#divisionselect").val();
             getUserList(false,defval);
 
+            $(document).find("#ff_divisions").val(defval);
+
             // employees 
             $(document).find("#ff_employees").val("");
 
@@ -942,7 +945,7 @@ $(document).ready(function(e){
 
     $(document).on("click", ".go_btn", function(e) {
         var CSRF_TOKEN  =   $('meta[name="csrf-token"]').attr('content');
-        var dept        =   $('input#ff_divisions').val();
+        var dept        =   $('input#ff_divisions').val(); // mark here
         var x_id        =   $('input#_id').val();
         var rem         =   $('textarea#remarks').val();
 
@@ -1017,9 +1020,9 @@ $(document).ready(function(e){
             // console.log(els[0].innerText);
 
         //    return;
-        //    forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
+            forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
         //     document.getElementById('busywait').style.display = "none"; 
-            window.location.reload();
+        //    window.location.reload();
             e.preventDefault();
             
         }
