@@ -1022,7 +1022,7 @@ $(document).ready(function(e){
         //    return;
         //    forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
         //     document.getElementById('busywait').style.display = "none"; 
-            window.location.reload();
+        //    window.location.reload();
             e.preventDefault();
             
         }

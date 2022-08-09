@@ -308,7 +308,8 @@ color: #3490dc;
                                                             ?>
                                                             <div class='perrow'>
                                                                 <div class='one'>
-                                                                    <p class='destinationtext'> {{$data[$i]->destination}} </p>
+                                                                    <p class='destinationtext'> Action: </p>
+                                                                    <p> {{$data[$i]->destination}} </p>
                                                                 </div>
                                                                 <div class='two'> 
                                                                     <p class='destinationtext'> Forwarded on: </p> 
@@ -486,7 +487,8 @@ color: #3490dc;
 
                                                             <div class='perrow'>
                                                                 <div class='one'>
-                                                                    <p class='destinationtext'> {{$data[$i]->destination}} </p>
+                                                                    <p class='destinationtext'> Action: </p>
+                                                                    <p> {{$data[$i]->destination}} </p>
                                                                 </div>
                                                                 <div class='two'>
                                                                     <p class='destinationtext'> Forwarded on: </p> 
