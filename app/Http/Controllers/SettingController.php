@@ -81,6 +81,20 @@ class SettingController extends Controller
         }
     }
 
+    public function updatepassword(Request $req) {
+        if (request()->ajax()) {
+            $id       = $req->input("id");
+            $password = $req->input("password");
+
+            $data  = DB::table("users")
+                        ->where(["users.id" =>$id])
+                        ->update([
+                            'password'=>Hash::make($password),
+                        ]);
+            return response()->json(["updatedrow" => $data]);
+        }
+    }
+
     public function view_profile($id)
     {
         $data = DB::table('users')

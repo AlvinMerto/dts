@@ -314,7 +314,7 @@ color: #3490dc;
                                                                     <p class='destinationtext'> Forwarded on: </p> 
                                                                     <p> {{ $data[$i]->date_forwared }} </p>
                                                                 </div>
-                                                                <div>
+                                                               <div class='two'>
                                                                     <p class='destinationtext'> Actions: </p>
                                                                     <?php 
                                                                         $rems = explode(",",$data[$i]->remarks); 
@@ -331,7 +331,7 @@ color: #3490dc;
                                                                 </div>
                                                                 <?php 
                                                                     if ($remarks != null) {
-                                                                        echo "<div>";
+                                                                         echo "<div>";
                                                                             echo "<p class='destinationtext'> Remarks: </p>";
                                                                             echo "<p> {$remarks} </p>";
                                                                         echo "</div>";
@@ -340,7 +340,7 @@ color: #3490dc;
                                                             </div>
                                             <?php 
                                                         } 
-                                                        echo "<div style='border-bottom:1px solid #ccc; width:100%;'> </div>";
+                                                      // echo "<div style='border-bottom:1px solid #ccc; width:100%;'> </div>";
                                                     }
                                                 }
                                             ?>
@@ -488,20 +488,21 @@ color: #3490dc;
                                                                 <div class='one'>
                                                                     <p class='destinationtext'> {{$data[$i]->destination}} </p>
                                                                 </div>
-                                                                <div class='two'> 
+                                                                <div class='two'>
                                                                     <p class='destinationtext'> Forwarded on: </p> 
                                                                     <p> {{ $data[$i]->date_forwared }} </p>
                                                                 </div>
-                                                                <div>
+                                                                <div class='two'>
                                                                     <p class='destinationtext'> Actions: </p>
                                                                     <?php 
                                                                         $rems = explode(",",$data[$i]->remarks); 
                                                                         $remarks = null;
 
                                                                         if ( preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/',$rems[count($rems)-1]) == 1) {
-                                                                            $remarks = $rems[count($rems)-1];
+                                                                            // echo $rems[count($rems)-1];
+                                                                            $remarks = strip_tags($rems[count($rems)-1]);
                                                                             unset($rems[count($rems)-1]);
-                                                                        } 
+                                                                        }
 
                                                                         echo implode(" ",$rems);
                                                                     ?>

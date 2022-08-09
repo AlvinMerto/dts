@@ -284,6 +284,57 @@ class HomeController extends Controller
         }
     }
 
+    public function setuserinactive(Request $req) {
+        if (request()->ajax()) {
+           $id = $req->input("id");
+
+           $data = DB::table("users")
+                     ->where(['users.id'=>$id])
+                     ->update(['users.division'=>'']);
+
+           return response()->json(["updatedrow" => $data]);
+        }
+    }
+
+    public function setasactive(Request $req) {
+        if (request()->ajax()) {
+            $id     = $req->input("id");
+            $office = $req->input("office");
+
+            $data   = DB::table("users")
+                        ->where(["users.id" => $id])
+                        ->update(["users.division" => $office]);
+
+            return response()->json(["updatedrow" => $data]);
+        }
+    }
+
+    public function updateemail(Request $req) {
+        if (request()->ajax()) {
+            $id     = $req->input("id");
+            $email  = $req->input("email");
+
+            $data   = DB::table("users")
+                        ->where(["users.id" => $id])
+                        ->update(["users.email" => $email]);
+
+            return response()->json(["updatedrow" => $data]);
+        }
+    }
+
+    public function updatefullname(Request $req) {
+        if (request()->ajax()) {
+            $id     = $req->input("id");
+            $email  = $req->input("fullname");
+
+            $data   = DB::table("users")
+                        ->where(["users.id" => $id])
+                        ->update(["users.f_name" => $email]);
+
+            return response()->json(["updatedrow" => $data]);
+        }
+    }
+
     public function admin_users_control_edit(Request $request,$id)
     {
         if(request()->ajax())

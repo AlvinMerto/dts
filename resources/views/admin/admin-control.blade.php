@@ -35,6 +35,29 @@ $(document).ready(function(e){
 });
 </script>
 
+<style>
+    .userslist tr:hover{
+        background-color: #ccc;
+    }
+
+    .inactive {
+        background: #aca7a8;
+    }
+
+    .settingstbl {
+
+    }
+
+    .settingstbl tr{
+        
+    }
+
+    .settingstbl tr td{
+        vertical-align: top;
+        font-weight: bold;
+    }
+</style>
+
 <input type="hidden" name="type_input" id="type_input" value="adminv">
 <div class="content-wrapper ml-2" style="width: 115%">
     <div class="row justify-content-center" style="width: 100%">
@@ -96,28 +119,47 @@ $(document).ready(function(e){
                                       <!-- /.search form -->
                         <!--Content-->
 
-                            <table style="align-self: center; table-layout: inherit;">
+                            <table style="align-self: center; table-layout: inherit;" class='userslist'>
                                 <tr>
                                     <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Name</td>
                                     <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Email</td>
                                     <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Designation</td>
                                     <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Division</td>
-                                    <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Access Level</td>
+                                    <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Action</td>
                                 </tr>
 
+                                <?php $thedivision = []; ?>
+
                                 @foreach($userlist as $user)
-                                <tr>
+                                <?php 
                                     
+                                    $class = null;
+                                    if ( strlen(trim($user->division)) == 0) {
+                                        $class = "inactive";
+                                    } else {
+                                        $class = null;
+
+                                        if (count($thedivision) > 0) {
+                                            if (!in_array($user->division, $thedivision)) {
+                                                array_push($thedivision,$user->division);
+                                            }
+                                        } else {
+                                            array_push($thedivision,$user->division);
+                                        }
+                                    }
+
+                                ?>
+                                <tr class='<?php echo $class; ?>'>
+                                        
                                         <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->f_name}}</td>
                                         <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->email}}</td>
                                         <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->position}}</td>
-                                        <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->division}}</td>
+                                        <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->division}} </td>
                                         <td>
-                                            <a href="javascript:void(0);" class="alevel btn btn-small btn-primary mr-3" id="{{$user->id}}"><span class="fa fa-expeditedssl" aria-hidden="true"></span> Set Access Level</a>
-
-                                        </td>
-
-                                    
+                                            <a href="javascript:void(0);" class="alevel btn btn-small btn-primary mr-3" id="{{$user->id}}" data-status='{{$class}}' data-email='{{$user->email}}' data-fullname='{{$user->f_name}}'>
+                                                <span class="fa fa-expeditedssl" aria-hidden="true"></span> see actions
+                                            </a>
+                                        </td>                             
                                 </tr>
                                 @endforeach
                             </table>
@@ -143,51 +185,96 @@ $(document).ready(function(e){
 <div class="modal fade" id="set-access" tabindex="-1" role="dialog"aria-labelledby="edit-modal-label" aria-hidden="true">
   <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
     <div class="modal-content">
-      <div class="modal-header"><span style="font-size: 24px; color: #0B2161; text-align: center;"><strong>SET ACCESS LEVEL</strong></span>
+      <div class="modal-header"><span style="font-size: 18px; color: #0B2161; text-align: center;"><strong>SET ACCESS LEVEL </strong> <small class='statustxt' style='color:red;'> </small></span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.reload();"><span aria-hidden="true">&times;</span>
         </button>
       </div>
       <span id="form_result"></span>
 
-      <table border="1px #fff solid;" style="align-self: center;">
-
+      <table border="1px #fff solid;" style="align-self: center;" class='settingstbl'>
         <tr>
-            <td align="center">
-                <span>
-                    <input type="checkbox" name="chkuser" id="chkuser" class="checkboxes" style="vertical-align: text-bottom;"> User
-                </span>
-            <td align="center">
-                <span>
-                    <input type="checkbox" name="chkdchief" id="chkdchief" style="vertical-align: text-bottom;"> Division Chief
-                </span>
+            <td style="text-align: right;padding-top: 0px;padding-right: 20px; width: 25%;">
+                <h4> Access Level </h4>
             </td>
-            <td align="center">
-                <span>
-                    <input type="checkbox" name="chkdirector" id="chkdirector" style="vertical-align: text-bottom;"> Director
-                </span>
-            </td>
-            <td align="center">
-                <span>
-                    <input type="checkbox" name="chkoc" id="chkoc" style="vertical-align: text-bottom;"> OC/OED/ARMIK
-                </span>
-            </td>
-            <td align="center">
-                <span>
-                    <input type="checkbox" name="chkadmin" id="chkadmin" style="vertical-align: text-bottom;"> Admin
-                </span>
-            </td>
-            <td align="center">
-                <span>
-                    <input type="checkbox" name="chkrecord" id="chkrecord" style="vertical-align: text-bottom;"> Records
-                </span>
+            <td> 
+                <p>
+                    <label class='btn btn-default'>
+                        <input type="checkbox" name="chkuser" id="chkuser" class="checkboxes" style="vertical-align: text-bottom;"> User
+                    </label>
+                </p>
+                <p>
+                    <label class='btn btn-default'>
+                        <input type="checkbox" name="chkdchief" id="chkdchief" style="vertical-align: text-bottom;"> Division Chief
+                    </label>
+                </p>
+                <p>
+                    <label class='btn btn-default'>
+                        <input type="checkbox" name="chkdirector" id="chkdirector" style="vertical-align: text-bottom;"> Director
+                    </label>
+                </p>
+                <p>
+                    <label class='btn btn-default'>
+                        <input type="checkbox" name="chkoc" id="chkoc" style="vertical-align: text-bottom;"> OC/OED/ARMIK
+                    </label>
+                </p>
+                <p>
+                    <label class='btn btn-default'>
+                        <input type="checkbox" name="chkadmin" id="chkadmin" style="vertical-align: text-bottom;"> Admin
+                    </label>
+                </p>
+                 <p>
+                    <label class='btn btn-default'>
+                        <input type="checkbox" name="chkrecord" id="chkrecord" style="vertical-align: text-bottom;"> Records
+                    </label>
+                </p>
+                <input type="hidden" name="_id" id="_id" value="">
+                
+                <button class="btn_save btn btn-primary" style="padding-left: 20px; padding-right: 20px; "><span class="fa fa-floppy-o" aria-hidden="true"></span> Save</button>
             </td>
         </tr>
-        <input type="hidden" name="_id" id="_id" value="">
-
         <tr>
-            <td colspan="6"><button class="btn_save btn btn-success" style="padding-left: 20px; padding-right: 20px; float: right;"><span class="fa fa-floppy-o" aria-hidden="true"></span> Save</button></td>
+            <td style="text-align: right;padding-top: 0px;padding-right: 20px; width: 25%;"> <h4> Set as inactive </h4> </td>
+            <td> <button class='btn btn-default setinactive'> Set Inactive </button> </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;padding-top: 0px;padding-right: 20px; width: 25%;"> <h4> Set as active </h4> </td>
+            <td> 
+                <select class='btn btn-default' id='officeactive'>
+                    <?php 
+                        foreach($thedivision as $td) {
+                            echo "<option>";
+                                echo $td;
+                            echo "</option>";
+                        }
+                    ?>
+                </select> <br/>
+                <button class='btn btn-primary setasactive' style="margin-top: 5px;"> Update office </button> 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;padding-top: 0px;padding-right: 20px; width: 25%;"> <h4> Update email </h4> </td>
+            <td> 
+                <input type='text' id='theemail' class="form-control"/> <button class='btn btn-primary updateemail' style='margin-top: 5px;' > Update Email </button> 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;padding-top: 0px;padding-right: 20px; width: 25%;"> <h4> Update Name </h4> </td>
+            <td> 
+                <input type='text' id='thefullname' class="form-control"/> <button class='btn btn-primary updatefullname' style='margin-top: 5px;' > Update fullname </button> 
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;padding-top: 0px;padding-right: 20px; width: 25%;"> <h4> Update password </h4> </td>
+            <td> 
+                <input type='password' id='password' class="form-control"/> <button class='btn btn-primary updatepassword' style='margin-top: 5px;' > Update Password </button> 
+            </td>  
+        </tr>
+        <tr>
+            <td style="text-align: right; padding-right: 20px; width: 25%;"> <h4> Account Status </h4> </td>
+            <td> <h4 id='accountstatus'> </h4> </td>
         </tr>
     </table>
+
   </div>
 </div>
 </div>
@@ -195,17 +282,134 @@ $(document).ready(function(e){
 <script src="{{ asset('js/moment.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-
+        var theselectedid = null;
+        
         $(document).on("click", ".alevel", function() {
             var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
             var id   = $(this).attr("id");
 
-            $('input#_id').val(id);
+            theselectedid = id;
 
+            // setting the defaults
+                $(document).find("#theemail").val( $(this).data("email") );
+                $(document).find("#thefullname").val( $(this).data("fullname") );
+            // end 
+
+            if ($(this).data('status') == "inactive"){
+                $(document).find("#accountstatus").text("Inactive account");
+            } else {
+                $(document).find("#accountstatus").text("This account is active");
+            }
+
+            $('input#_id').val(id);
             $('#set-access').modal('show'); 
 
         });
 
+        $(document).on("click",".setinactive", function(){
+            var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+
+            if (theselectedid == null) { alert("no ID is selected"); return; }
+
+            $.ajax({
+                url : "{{ url('/admin/setuserinactive') }}",
+                type: "POST",
+                data : { _token: CSRF_TOKEN , id: theselectedid },
+                dataType: "json",
+                success : function(data) {
+                    alert("Update successful! number of row updated: "+data['updatedrow']);
+                    window.location.reload();
+                }, error: function() {
+                    alert('error in setting the user inactive');
+                }
+            });
+        });
+
+        $(document).on("click",".setasactive",function(){
+            var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+
+            if (theselectedid == null) { alert("no ID is selected"); return; }
+            var theoffice   = $(document).find("#officeactive").val();
+
+            $.ajax({
+                url : "{{ url('/admin/setasactive') }}",
+                type: "POST",
+                data : { _token: CSRF_TOKEN , id: theselectedid , office : theoffice },
+                dataType: "json",
+                success : function(data) {
+                    alert("Update successful! number of row updated: "+data['updatedrow']);
+                    window.location.reload();
+                }, error: function() {
+                    alert('error in setting the user as active');
+                }
+            });
+        });
+
+        $(document).on("click",".updateemail", function(){
+            var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+            
+            $(document).find(".statustxt").html("updating please wait.")
+
+            if (theselectedid == null) { alert("no ID is selected"); return; }
+            var email   = $(document).find("#theemail").val();
+
+            $.ajax({
+                url : "{{ url('/admin/updateemail') }}",
+                type: "POST",
+                data : { _token: CSRF_TOKEN , id: theselectedid , email : email },
+                dataType: "json",
+                success : function(data) {
+                    alert("Update successful! number of row updated: "+data['updatedrow']);
+                    window.location.reload();
+                }, error: function() {
+                    alert('error in setting the user as active');
+                }
+            });
+        });
+
+        $(document).on("click", ".updatefullname", function(){
+            var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+            
+            $(document).find(".statustxt").html("updating please wait.")
+
+            if (theselectedid == null) { alert("no ID is selected"); return; }
+            var fullname   = $(document).find("#thefullname").val();
+
+            $.ajax({
+                url : "{{ url('/admin/updatefullname') }}",
+                type: "POST",
+                data : { _token: CSRF_TOKEN , id: theselectedid , fullname : fullname },
+                dataType: "json",
+                success : function(data) {
+                    alert("Update successful! number of row updated: "+data['updatedrow']);
+                    window.location.reload();
+                }, error: function() {
+                    alert('error in setting the user as active');
+                }
+            });
+        });
+
+         $(document).on("click",".updatepassword", function(){
+            var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+            
+            $(document).find(".statustxt").html("updating please wait.")
+
+            if (theselectedid == null) { alert("no ID is selected"); return; }
+            var password   = $(document).find("#password").val();
+
+            $.ajax({
+                url : "{{ url('/admin/updatepassword') }}",
+                type: "POST",
+                data : { _token: CSRF_TOKEN , id: theselectedid , password : password },
+                dataType: "json",
+                success : function(data) {
+                    alert("Update successful! number of row updated: "+data['updatedrow']);
+                    window.location.reload();
+                }, error: function() {
+                    alert('error updating the password');
+                }
+            });
+        });
     });
 
     $(document).ready(function(){

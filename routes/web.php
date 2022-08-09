@@ -269,6 +269,11 @@ Route::get('/sendautomail',[InternalController::class, 'send_email']);
 //////////////////////////ADMIN///////////////////////////////////////////////
 
 Route::get('/admin',[HomeController::class, 'admin_users_control']);
+Route::post("/admin/setuserinactive", [HomeController::class, 'setuserinactive']);
+Route::post("/admin/setasactive", [HomeController::class, 'setasactive']);
+Route::post("/admin/updateemail", [HomeController::class,"updateemail"]);
+Route::post("/admin/updatepassword",[SettingController::class,"updatepassword"]);
+Route::post("/admin/updatefullname",[HomeController::class,"updatefullname"]);
 
 Route::post('/admin/access-level/{id}',[HomeController::class, 'admin_users_control_edit']);
 
