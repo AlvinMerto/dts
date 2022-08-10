@@ -146,7 +146,7 @@ body {
           </ul>
         </li>
 
-        <li class="treeview track">
+        <!--li class="treeview track">
           <a href="#" style="font-size: 14px;">
             <i class="fa fa-list-ol"aria-hidden="true"></i> <span>Tracking Number</span>
             <span class="pull-right-container">
@@ -188,7 +188,7 @@ body {
           <ul class="treeview-menu">
             <li style="font-size: 12px;"><a href="{{url('/sendMail-data')}}" style="font-size: 12px;"><i class="fa fa-search"></i> Send Mail Test</a></li>
           </ul>
-        </li>
+        </li-->
       </ul>
     </section>
   </aside>
