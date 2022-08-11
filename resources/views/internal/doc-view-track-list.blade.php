@@ -51,13 +51,12 @@ $(document).ready(function(e){
 }
 
 .img-grid ul > li {
-    display: block;
-    float: left;
-    list-style: none;
-    border: solid 1px #3b5998;
-    padding: 10px;
-    margin: 10px;
-    margin-bottom: 50px;
+float: left;
+list-style: none;
+border: solid 1px #d9d9d9;
+padding: 4px 10px;
+margin: 10px 4px;
+border-radius: 4px;
 }
 
 
@@ -74,14 +73,13 @@ $(document).ready(function(e){
 
 .theboxtab {
     width: 100%;
-    overflow-x: auto;
+    /*overflow-x: auto; */
 }
     
 .theboxtab ul {
    width: auto;
     padding: 0px;
     display: flex;
-    border-bottom: 1px solid #3490dc;
     margin-bottom: 0px;
 }
 
@@ -100,21 +98,26 @@ color: #a4a4a4;
 font-weight: normal;
 }
 
-.theboxtab ul li:hover {
-    background: #ccc;
+.theboxtab ul li:hover > a{
+    font-weight: bold;
     cursor: pointer;
+    color: #3490dc;
 }
 
 .perrow {
 display: flex;
-border-bottom: 1px solid #ccc;
+border-bottom: 2px solid #3490dc;
+border-left: 2px solid #3490dc;
+border-right: 2px solid #3490dc;
+border-radius: 6px;
+margin-top: -2px;
+border-top: 2px solid #3490dc;
 }
 
 .perrow div{
 padding: 7px;
 width: auto;
 font-weight: normal;
-border-left: 1px solid #ccc;
 font-family: arial;
 font-size: 12px;
 }
@@ -125,6 +128,9 @@ font-size: 12px;
 
 .perrow div.two {
 width: 12%;
+border-left: 1px solid #ccc;
+border-right: 1px solid #ccc;
+margin-left: -1px;
 }
 
 .perrow div.three {
@@ -132,7 +138,7 @@ width: 12%;
 }
 
 .destinationtext {
-font-size: 14px;
+font-size: 12px;
 font-weight: bold;
 letter-spacing: 0.1px;
 color: #3490dc;
@@ -140,12 +146,27 @@ color: #3490dc;
 
 .dateselected {
     background-color: #3490dc !important;
+border-radius: 9px 9px 0px 0px !important;
+box-shadow: 0px -2px 3px #cecece;
+border-top: 1px solid #eaeaea;
 }
 
 .dateselected a {
     color: #fff !important;    
     font-weight: bold !important;
 }
+
+.theblack {
+border: 1px solid #ccc;
+height: auto;
+z-index: 10000000;
+width: auto;
+padding-bottom: 10px;
+box-shadow: 0px 0px 13px #938e8e;
+background: #fff;
+margin-top: 10px;
+}
+
 </style>
 
 <input type="hidden" name="type_input" id="type_input" value="internal">
@@ -153,7 +174,7 @@ color: #3490dc;
     <div class="row justify-content-center" style="width: 100%">
         <div class="col-md-8">
             <div class="card mt-3" style=" margin-bottom: 50px;">
-                <div class="card-header bg-primary" style="font-size: 16px; font-weight: bold; color: #fff;">Internal Document Lists</div>
+                <!--div class="card-header bg-default" style="font-size: 17px; font-weight: normal; color: #666;"--> <h4 style="margin-left: 14px; margin-top: 18px;border-bottom: 1px solid #ccc;padding-bottom: 15px;"> Internal Document Lists </h4> <!--/div-->
                     <div class="card-body" style="display: flex; justify-content: center;">
 
                         <section style="width: 100%">
@@ -535,26 +556,26 @@ color: #3490dc;
                                 <table>
                                     <tr>
                                         @if(Auth::user()->access_level == 5)
-                                            <td colspan="5">
-                                                <button onclick="export_excel();" class="btnExport btn btn-medium btn-success" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button> 
+                                            <td colspan="5" style="padding: 0px;padding-bottom: 15px;">
+                                                <button onclick="export_excel();" class="btnExport btn btn-medium btn-default" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button> 
 
-                                                <a href="{{ url('/internal-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-primary"><i class="fa fa-edit"></i> New Internal Entry</a>
+                                                <a href="{{ url('/internal-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> New Internal Entry</a>
 
-                                                <button id="{{$d->ref_id}}" class="btn-ff btn btn-danger pl-3 pr-3" style="font-size: 12px; float: right; margin-right: 10px;"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</button>
+                                                <button id="{{$d->ref_id}}" class="btn-ff btn btn-default pl-3 pr-3" style="font-size: 12px; float: right; margin-right: 10px;"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</button>
 
-                                                <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right; margin-right: 10px;" class="btn btn-medium btn-info"><i class="fa fa-chevron-left"></i> Back</a>
+                                                <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right; margin-right: 10px;" class="btn btn-medium btn-default"><i class="fa fa-chevron-left"></i> Back</a>
                                             </td>
                                         @else
-                                            <td colspan="5">
-                                                <button onclick="export_excel();" class="btnExport btn btn-medium btn-success" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                                            <td colspan="5" style="padding: 0px;padding-bottom: 15px;">
+                                                <button onclick="export_excel();" class="btnExport btn btn-medium btn-default" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
 
-                                                <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-success"><i class="fa fa-edit"></i> Back</a>
+                                                <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
                                         @endif
                                     </tr>
                                 </table>
 
                             @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
-                                <div><span class="fa fa-paperclip"></span> Attachments</div>
+                                <div>Attachments</div>
                                 @if($docimages->count()>0)
                                 @foreach($docimages as $img)
                                 <div class="img-grid">
@@ -562,7 +583,7 @@ color: #3490dc;
                                          <li class="photos-gallery-li">
                                             <div class="photo">
                                                 <object data="{{ url('public/uploads') }}/{{ $img->img_file }}" type="application/pdf" height="105">
-                                                <iframe  src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
+                                                    <iframe src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
                                                 </object><br>
                                                 <a href="{{ url('public/uploads') }}/{{ $img->img_file }}" target="blank">
                                                     <i class="fa fa-search-plus" aria-hidden="true"><span style="font-family: calibri;"> Full view</span></i>
@@ -570,34 +591,30 @@ color: #3490dc;
                                             </div>
                                         </li>
                                     </ul>
-
                                 </div>
-
-                            @endforeach
+                                @endforeach
                             @endif
 
                             @elseif($d->classification != 1)
-                                <div><span class="fa fa-paperclip"></span> Attachments</div>
+                                <h4> Attachments</h4>
                                 @if($docimages->count()>0)
-                                @foreach($docimages as $img)
-                                <div class="img-grid">
-                                    <ul class="photos-gallery-layout">
-                                         <li class="photos-gallery-li">
-                                            <div class="photo">
-                                                <object data="{{ url('public/uploads') }}/{{ $img->img_file }}" type="application/pdf" height="105">
-                                                <iframe  src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
-                                                </object><br>
-                                                <a href="{{ url('public/uploads') }}/{{ $img->img_file }}" target="blank">
-                                                    <i class="fa fa-search-plus" aria-hidden="true"><span style="font-family: calibri;"> Full view</span></i>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div>
-
-                            @endforeach
-                            @endif
+                                    @foreach($docimages as $img)
+                                    <div class="img-grid">
+                                        <ul class="photos-gallery-layout">
+                                             <li class="photos-gallery-li">
+                                                <div class="photo" data-href="{{ url('public/uploads') }}/{{ $img->img_file }}"> 
+                                                    <!--object data="{{ url('public/uploads') }}/{{ $img->img_file }}" type="application/pdf" height="105">
+                                                        <iframe  src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
+                                                    </object><br-->
+                                                    <a href="{{ url('public/uploads') }}/{{ $img->img_file }}" target="blank">
+                                                        <span> <i class="fa fa-paperclip"> attached file </i> </span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    @endforeach
+                                @endif
 
                             @endif
 
@@ -749,13 +766,27 @@ color: #3490dc;
         //var id = (arr[arr.length-2]);
         var id = (arr[arr.length-1]);
         
-
         //alert(id);
         window.location = "{{ url('/export-excel-internal/excel-file-report/document-tracking') }}/"+id;
     }
 
 
     $(document).ready(function() {
+        $(document).on("mouseover",".photos-gallery-li .photo", function(e) {
+            $(document).find(".theblack").remove();
+
+            var href = $(this).data("href");
+            // <p style='text-align: right;padding-right: 11px;font-size: 22px;background: #ccc;'> <i class='fa fa-times' aria-hidden='true'></i> </p>
+            $("<div class='theblack' id='theblack'> <div class='displayhere'><object data='"+href+"' type='application/pdf' style='width:700px; height:700px';> <iframe  src='"+href+"&embedded=true'></iframe></object> </div> </div>")
+                .css({'top' : 0, 'left' : e.pageX+10 , 'position' : 'absolute'})
+                .appendTo( document.body );
+        })
+
+        $(document).on("mouseout","#theblack", function(e){
+            if(e.target.id != "theblack") {
+                $(document).find(".theblack").remove();
+            }
+        });
 
         $(document).on("click", ".btn-ff", function() {
             var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
