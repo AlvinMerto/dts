@@ -1145,7 +1145,7 @@ border: 1px solid #e6e6e6;
 
         //    return;
         // send email
-            forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
+        //    forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
         //     document.getElementById('busywait').style.display = "none"; 
         //    window.location.reload();
             e.preventDefault();
