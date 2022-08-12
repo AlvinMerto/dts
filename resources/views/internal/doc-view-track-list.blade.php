@@ -161,7 +161,6 @@ border: 1px solid #ccc;
 height: auto;
 z-index: 10000000;
 width: auto;
-padding-bottom: 10px;
 box-shadow: 0px 0px 13px #938e8e;
 background: #fff;
 margin-top: 10px;
@@ -777,8 +776,10 @@ margin-top: 10px;
 
             var href = $(this).data("href");
             // <p style='text-align: right;padding-right: 11px;font-size: 22px;background: #ccc;'> <i class='fa fa-times' aria-hidden='true'></i> </p>
-            $("<div class='theblack' id='theblack'> <div class='displayhere'><object data='"+href+"' type='application/pdf' style='width:700px; height:700px';> <iframe  src='"+href+"&embedded=true'></iframe></object> </div> </div>")
-                .css({'top' : 0, 'left' : e.pageX+10 , 'position' : 'absolute'})
+            // var el = document.elementFromPoint(event.pageX, event.pageY);
+            // 
+            $("<div class='theblack' id='theblack'> <div class='displayhere'><object data='"+href+"' type='application/pdf' style='width:700px; height:800px';> <iframe  src='"+href+"&embedded=true'></iframe></object> </div> </div>")
+                .css({'top' : 10, 'left' : e.pageX+10 , 'position' : 'absolute'})
                 .appendTo( document.body );
         })
 
