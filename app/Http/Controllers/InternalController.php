@@ -1696,7 +1696,7 @@ class InternalController extends Controller
                         
                         
                         Mail::send('mailer.mail-internal', $mdata, function($message) use ($receiptient,$pr){
-                            $message->from('no-reply@minda.gov.ph');
+                            $message->from('no-reply@minda.gov.ph',"Minda DocTrack");
                             $message->to($receiptient);
                             $message->subject($pr.' Mail from Document Tracking System');
                         });
@@ -1731,7 +1731,7 @@ class InternalController extends Controller
                 }
                     
                     Mail::send('mailer.mail-internal-user', $theinfo, function($message) use ($receiptient,$pr){
-                          $message->from('no-reply@minda.gov.ph');
+                          $message->from('no-reply@minda.gov.ph',"Minda DocTrack");
                           $message->to($receiptient);
                           $message->subject($pr.' Mail from Document Tracking System');
                       });
@@ -1867,6 +1867,7 @@ class InternalController extends Controller
                     ->get();
 
         if(Auth::user()->access_level=='5' and Auth::user()->division=='RECORDS'){
+            /*
             $div = DB::table('users')
                     ->where(['users.division'=>'OC'])
                     ->orWhere(['users.division'=>'OED'])
@@ -1874,7 +1875,11 @@ class InternalController extends Controller
                     ->groupBy('users.division')
                     ->orderBy('users.division', 'asc')
                     ->get();
-
+            */
+            $div = DB::table('users')
+                    ->groupBy('users.division')
+                    ->orderBy('users.division', 'asc')
+                    ->get();
         }else if(Auth::user()->division=='RECORDS' and Auth::user()->access_level=='1'){
             $div = DB::table('users')
                     ->where(['users.division'=>'RECORDS'])

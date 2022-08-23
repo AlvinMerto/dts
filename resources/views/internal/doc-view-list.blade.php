@@ -786,11 +786,11 @@ border: 1px solid #e6e6e6;
             <table>
                 <tr>
                     <td align="left" class="p-3" style="border-bottom: none; background: #fff">
-                        <label for="remarks" style="font-size: 15px; color: #0B3861;" >Instruction for the entire group</label><br>
+                        <label for="remarks" style="font-size: 15px; color: #0B3861;" >Remarks</label><br>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <textarea id="remarks" name="remarks" rows="3" style="width: 100%; max-width: 100%;border: 1px solid #ccc;border-radius: 4px;resize: none;padding: 10px;" placeholder=""></textarea>
                     </td>
                 </tr>
@@ -1145,7 +1145,7 @@ border: 1px solid #e6e6e6;
 
         //    return;
         // send email
-        //    forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
+            forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
         //     document.getElementById('busywait').style.display = "none"; 
         //    window.location.reload();
             e.preventDefault();
@@ -1205,11 +1205,11 @@ border: 1px solid #e6e6e6;
                     swal({
                               position: 'center',
                               icon: 'error',
-                              title: 'Sending mail failed!, please check your internet coonnection and Email Addresses',
+                              title: 'Sending mail failed!, please check your internet connection and Email Addresses',
                               showConfirmButton: false
                             });
                     //alert(JSON.stringify(ex));
-                    window.location.href="{{ url('/home') }}";
+                    // window.location.href="{{ url('/home') }}";
                   },
                 });
     }

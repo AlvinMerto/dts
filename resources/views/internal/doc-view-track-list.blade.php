@@ -37,6 +37,43 @@ $(document).ready(function(e){
 </script>
 
 <style type="text/css">
+        table th td,table th,table td {
+        padding-left: 16px;
+    }
+
+    table td p {
+        margin-bottom: 3px;
+    }
+
+    #recipientsbox p:hover {
+        cursor: pointer;
+        color: red;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    #mailstatus p {
+        padding: 5px;
+        margin-bottom: 0px;
+    }
+
+    .theinnertbl {
+
+    }
+
+    .theinnertbl tr {
+        border-left: 1px solid #e6e6e6;
+        border-right: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .theinnertbl tr th{
+        font-size: 12px;
+font-weight: bold;
+color: #86898a;
+border: 1px solid #e6e6e6;
+    }
+
 .img-grid {
     position: relative;
     width: 205;
@@ -109,7 +146,7 @@ display: flex;
 border-bottom: 2px solid #3490dc;
 border-left: 2px solid #3490dc;
 border-right: 2px solid #3490dc;
-border-radius: 6px;
+border-radius: 0px 6px 6px 0px;
 margin-top: -2px;
 border-top: 2px solid #3490dc;
 }
@@ -118,7 +155,7 @@ border-top: 2px solid #3490dc;
 padding: 7px;
 width: auto;
 font-weight: normal;
-font-family: arial;
+font-family: calibri;
 font-size: 12px;
 }
 
@@ -173,8 +210,8 @@ margin-top: 10px;
     <div class="row justify-content-center" style="width: 100%">
         <div class="col-md-8">
             <div class="card mt-3" style=" margin-bottom: 50px;">
-                <!--div class="card-header bg-default" style="font-size: 17px; font-weight: normal; color: #666;"--> <h4 style="margin-left: 14px; margin-top: 18px;border-bottom: 1px solid #ccc;padding-bottom: 15px;"> Internal Document Lists </h4> <!--/div-->
-                    <div class="card-body" style="display: flex; justify-content: center;">
+                <!--div class="card-header bg-default" style="font-size: 17px; font-weight: normal; color: #666;"--> <h4 style="margin-left: 14px; margin-top: 18px;border-bottom: 1px solid #ccc;padding-bottom: 15px; margin-bottom:0px;"> Internal Document Lists </h4> <!--/div-->
+                    <div class="card-body" style="display: flex; justify-content: center; padding-top:0px;">
 
                         <section style="width: 100%">
                         <!--Content-->
@@ -189,36 +226,36 @@ margin-top: 10px;
                                     @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
     
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Date</td>
-                                            <td align="left" >{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Date</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;" >{{date('M d, Y', strtotime($d->doc_receive))}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Briefer #</td>
-                                             <td align="left" >{{$d->briefer_number}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Briefer #</td>
+                                             <td align="left" style="font-weight: bold;font-size: 14px !important;" >{{$d->briefer_number}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Barcode</td>
-                                            <td align="left" >{{$d->barcode}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Barcode</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->barcode}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Office/Division</td>
-                                            <td align="left" >{{$d->agency}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Office/Division</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->agency}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
-                                            <td align="left" >{{$d->type}}</td>
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Sender</td>
-                                            <td align="left" >{{$d->signatory}}</td>
+                                            <!--td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
+                                            <td align="left" >{{$d->type}}</td-->
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Sender</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;" >{{$d->signatory}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Category</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{$d->doctitle}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Category</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->doctitle}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Description</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{ $d->description }}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Description</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{ $d->description }}</td>
                                         </tr>
 
                                     </table>
@@ -252,36 +289,36 @@ margin-top: 10px;
                                         </tr>
                                     @elseif(Auth::user()->access_level == 5)
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Date</td>
-                                            <td align="left" >{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Date</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;" >{{date('M d, Y', strtotime($d->doc_receive))}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Briefer #</td>
-                                             <td align="left" >{{$d->briefer_number}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Briefer #</td>
+                                             <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->briefer_number}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Barcode</td>
-                                            <td align="left" >{{$d->barcode}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Barcode</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->barcode}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Office/Division</td>
-                                            <td align="left" >{{$d->agency}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Office/Division</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->agency}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
-                                            <td align="left" >{{$d->type}}</td>
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Sender</td>
-                                            <td align="left" >{{$d->signatory}}</td>
+                                            <!--td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
+                                            <td align="left" >{{$d->type}}</td-->
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Sender</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->signatory}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Category</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{$d->doctitle}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Category</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->doctitle}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Description</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{ $d->description }}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Description</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{ $d->description }}</td>
                                         </tr>
 
                                     </table>
@@ -377,36 +414,36 @@ margin-top: 10px;
                                     @elseif(Auth::user()->access_level != 5 && $d->confi_name == Auth::user()->f_name && $d->classification != 1)
     
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Date</td>
-                                            <td align="left" >{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Date</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Briefer #</td>
-                                             <td align="left" >{{$d->briefer_number}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Briefer #</td>
+                                             <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->briefer_number}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Barcode</td>
-                                            <td align="left" >{{$d->barcode}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Barcode</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->barcode}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Office/Division</td>
-                                            <td align="left" >{{$d->agency}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Office/Division</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->agency}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
-                                            <td align="left" >{{$d->type}}</td>
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Sender</td>
-                                            <td align="left" >{{$d->signatory}}</td>
+                                            <!--td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
+                                            <td align="left" >{{$d->type}}</td-->
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Sender</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->signatory}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Title</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{$d->doctitle}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Title</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->doctitle}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Description</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{ $d->description }}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Description</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{ $d->description }}</td>
                                         </tr>
 
                                     </table>
@@ -431,39 +468,41 @@ margin-top: 10px;
 
                                     @elseif(Auth::user()->access_level != 5 && $d->confi_name != Auth::user()->f_name && $d->classification != 1)
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Date</td>
-                                            <td align="left" >{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Date</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Briefer #</td>
-                                             <td align="left" >{{$d->briefer_number}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Briefer #</td>
+                                             <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->briefer_number}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Barcode</td>
-                                            <td align="left" >{{$d->barcode}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Barcode</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->barcode}}</td>
 
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Office/Division</td>
-                                            <td align="left" >{{$d->agency}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Office/Division</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->agency}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
-                                            <td align="left" >{{$d->type}}</td>
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Sender</td>
-                                            <td align="left" >{{$d->signatory}}</td>
+                                            <!--td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Type</td>
+                                            <td align="left" >{{$d->type}}</td-->
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Sender</td>
+                                            <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->signatory}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Document Title</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{$d->doctitle}}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Title</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->doctitle}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
-                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-weight: bold; font-size: 13px !important;">Description</td>
-                                            <td colspan="3" align="left" style="white-space: pre-wrap;">{{ $d->description }}</td>
+                                            <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Description</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{ $d->description }}</td>
                                         </tr>
 
                                        </table>
+
+                                       
 
                                         <h4 style='margin-top:25px;'> History of Actions </h4>
                                         @if($data->count()>0)
@@ -552,6 +591,7 @@ margin-top: 10px;
                                         
                                     @endif
 
+                                    
                                 <table>
                                     <tr>
                                         @if(Auth::user()->access_level == 5)
@@ -573,49 +613,49 @@ margin-top: 10px;
                                     </tr>
                                 </table>
 
-                            @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
-                                <div>Attachments</div>
-                                @if($docimages->count()>0)
-                                @foreach($docimages as $img)
-                                <div class="img-grid">
-                                    <ul class="photos-gallery-layout">
-                                         <li class="photos-gallery-li">
-                                            <div class="photo">
-                                                <object data="{{ url('public/uploads') }}/{{ $img->img_file }}" type="application/pdf" height="105">
-                                                    <iframe src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
-                                                </object><br>
-                                                <a href="{{ url('public/uploads') }}/{{ $img->img_file }}" target="blank">
-                                                    <i class="fa fa-search-plus" aria-hidden="true"><span style="font-family: calibri;"> Full view</span></i>
-                                                </a>
+                                @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
+                                            <div>Attachments</div>
+                                            @if($docimages->count()>0)
+                                            @foreach($docimages as $img)
+                                            <div class="img-grid">
+                                                <ul class="photos-gallery-layout">
+                                                     <li class="photos-gallery-li">
+                                                        <div class="photo">
+                                                            <object data="{{ url('public/uploads') }}/{{ $img->img_file }}" type="application/pdf" height="105">
+                                                                <iframe src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
+                                                            </object><br>
+                                                            <a href="{{ url('public/uploads') }}/{{ $img->img_file }}" target="blank">
+                                                                <i class="fa fa-search-plus" aria-hidden="true"><span style="font-family: calibri;"> Full view</span></i>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                @endforeach
-                            @endif
+                                            @endforeach
+                                        @endif
 
-                            @elseif($d->classification != 1)
-                                <h4> Attachments</h4>
-                                @if($docimages->count()>0)
-                                    @foreach($docimages as $img)
-                                    <div class="img-grid">
-                                        <ul class="photos-gallery-layout">
-                                             <li class="photos-gallery-li">
-                                                <div class="photo" data-href="{{ url('public/uploads') }}/{{ $img->img_file }}"> 
-                                                    <!--object data="{{ url('public/uploads') }}/{{ $img->img_file }}" type="application/pdf" height="105">
-                                                        <iframe  src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
-                                                    </object><br-->
-                                                    <a href="{{ url('public/uploads') }}/{{ $img->img_file }}" target="blank">
-                                                        <span> <i class="fa fa-paperclip"> attached file </i> </span>
-                                                    </a>
+                                        @elseif($d->classification != 1)
+                                            <h4> Attachments</h4>
+                                            @if($docimages->count()>0)
+                                                @foreach($docimages as $img)
+                                                <div class="img-grid">
+                                                    <ul class="photos-gallery-layout">
+                                                         <li class="photos-gallery-li">
+                                                            <div class="photo" data-href="{{ url('public/uploads') }}/{{ $img->img_file }}"> 
+                                                                <!--object data="{{ url('public/uploads') }}/{{ $img->img_file }}" type="application/pdf" height="105">
+                                                                    <iframe  src="{{ url('public/uploads') }}/{{ $img->img_file }}&embedded=true"></iframe>
+                                                                </object><br-->
+                                                                <a href="{{ url('public/uploads') }}/{{ $img->img_file }}" target="blank">
+                                                                    <span> <i class="fa fa-paperclip"> </i> Attached file  </span>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    @endforeach
-                                @endif
-
-                            @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+                            
 
 <!--Content End-->
                         </section>
@@ -628,8 +668,179 @@ margin-top: 10px;
 </div>
 
 <!-- Forward Modal -->
-
 <div class="modal fade" id="doc-ff" tabindex="-1" role="dialog" aria-labelledby="ff-modal-label" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
+    <div class="modal-content">
+      <div class="modal-header"><span style="font-size: 17px; color: #97918F; text-align: center;"><strong>DOCUMENT TRACKING SYSTEMmmm</strong></span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.reload();">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <span id="form_result"></span>
+            <table style="table-layout:fixed;border-collapse: collapse;">
+                <tr>
+                    <th style="font-size: 15px; color: #0B3861;" text-align="left"> 
+                        Level of priority
+                    </th>
+                    <td> 
+                        <select class="form-control btn btn-primary" id="docclassification" name="docclassification" onchange="checkClass()" style="width: 130px;"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="font-size: 15px; color: #0B3861;" text-align="left">Forward to:</th>
+                    <td class="p-3" style="border-bottom: none; background: #f2f2f2">
+                        <p> Division </p>
+                        <select id='divisionselect' class='btn btn-default' style='width: 100%;'>
+                            <?php 
+                                if ($div->count()>0) {
+                                    foreach($div as $d) {
+                                        if (strlen($d->division) > 0) {
+                                            echo "<option value='{$d->division}'>";
+                                                echo $d->division;
+                                            echo "</option>";
+                                        }
+                                    }
+                                }
+                            ?>
+                        </select>
+
+                        <input list="divisions" placeholder="Division" name="ff_divisions" id="ff_divisions" class="form-control" onchange="getUserList(this);" style='display:none;'>
+                        <datalist id="divisions">
+                            @if($div->count()>0)
+                            @foreach($div as $d)
+                                <option value="{{ $d->division }}"></option>
+                            @endforeach
+                            @endif
+                        </datalist>
+
+                        <input type="hidden" id="optselect" name="optselect">
+                    </td>
+                    <!-- mark here -->
+                    <input type="hidden" id="_id" name="_id" value="">
+                    <input type="hidden" id="person" name="person" value="">
+
+                <!--/tr>
+                <tr-->
+                    
+                    <td colspan="2" valign="middle" class="mt-1" align="left" style="margin-left: -5px !important;">
+                        <p> Employee Name </p>
+                        <input list="userlist" placeholder="MinDA Employee" name="ff_employees" id="ff_employees" class="form-control">
+                            <datalist id="userlist">
+                                @if($userlist->count()>0)
+                                    @foreach($userlist as $l)
+                                        <option value="{{ $l->f_name }}">
+                                    @endforeach
+                                @endif
+                            </datalist>
+                    </td>
+                    <td style='padding: 0px;'>
+                        <p> &nbsp; </p>
+                        <button class='btn btn-default' id='addthisemp'> Add </button>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" align="center"><span style="font-style: italic;">"Note: double-click the box or down arrow to show the list"</span></td>
+                </tr>
+        </table>
+        <table>
+                <tr style='border-top:1px solid #ccc; border-bottom: 1px solid #ccc;'>
+                    <th style="font-size: 15px; color: #0B3861;" align="left">Action</th>
+                    <!--th style="font-size: 15px; color: #0B3861;" align="left">Specific Instruction <span id='insfor'> </span> </th-->
+                    <th style="font-size: 15px; color: #0B3861;" align="left"> Recipients </th>
+                    <td> &nbsp; </td>
+                </tr>
+                <tr>
+                    <td align="left" style="word-wrap: break-word; vertical-align:top;" >
+                        <p>
+                            <input type="checkbox" name="for_appro_action" id="for_appro_action" style="vertical-align: text-bottom;"><b> <label for='for_appro_action'>for appropriate action </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_info" id="for_info" style="vertical-align: text-bottom; font-weight: bold;"><b> <label for='for_info'> for information </label> </b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_reference" id="for_reference" style="vertical-align: text-bottom; font-weight: bold;"><b> <label for='for_reference'> for reference </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_guidance" id="for_guidance" style="vertical-align: text-bottom; font-weight: bold;"><b> <label for='for_guidance'> for guidance </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_review" id="for_review" style="vertical-align: text-bottom;"><b> <label for='for_review'> for review and evaluation </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_signature" id="for_signature" style="vertical-align: text-bottom;"><b> <label for='for_signature'> for approval/signature </label> </b>
+                        </p>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <div id='recipientsbox'>
+
+                        </div>
+                        <!--p> <input type="text" style="padding: 10px;width: 100%;border: 1px solid #ccc;border-radius: 4px;"> </p>
+                        <p> <button class='btn btn-default'> Add Instruction </button> </p-->
+                    </td>
+                    <td style='vertical-align: top;'>
+                        <!--div>
+                            <p> Presentation </p>
+                        </div-->
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td align="left" class="p-3" style="border-bottom: none; background: #fff">
+                        <label for="remarks" style="font-size: 15px; color: #0B3861;" >Remarks</label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea id="remarks" name="remarks" rows="3" style="width: 100%; max-width: 100%;border: 1px solid #ccc;border-radius: 4px;resize: none;padding: 10px;" placeholder=""></textarea>
+                    </td>
+                </tr>
+                
+                <tr id="busywait" style="display: none;">
+                    <td colspan="2" align="center"><span style="color: #3A01DF;"><img src="{{ url('/images/busy_wait.gif') }}" height="40px">
+                        <b>Sending mails... Please wait...</b></span>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="modal-footer">
+                <table>
+                    <tr>
+                        {{--<input type="hidden" id="completedoc" name="completedoc" value="{{$data[0]->retdoc}}">--}}
+
+                        <td class="p-3" style="border-top: solid thin #fff;">
+                            <span style="float: left;" class="mr-3">
+                            @if(Auth::user()->access_level==4)
+                                <a href="javascript:void(0);" class="go_approve btn btn-small btn-default mr-3"><span class="fa fa-smile-o" aria-hidden="true"></span> Approve</a>
+
+                                <a href="javascript:void(0);" class="go_disapprove btn btn-small btn-default mr-3"><span class="fa fa-frown-o" aria-hidden="true"></span> Disapprove</a>
+                            @elseif(Auth::user()->access_level==5 and Auth::user()->division=='AD')
+                                <a href="javascript:void(0);" class="go_approve btn btn-small btn-default mr-3"><span class="fa fa-smile-o" aria-hidden="true"></span> Approve</a>
+
+                                <a href="javascript:void(0);" class="go_disapprove btn btn-small btn-default mr-3"><span class="fa fa-frown-o" aria-hidden="true"></span> Disapprove</a>
+                            @endif
+
+                            <a href="javascript:void(0);" class="go_complete btn btn-small btn-success mr-3"><span class="fa fa-check-square-o" aria-hidden="true"></span> Complete</a>
+
+                            </span>
+                            <span style='float:right;'> 
+                                <a href="javascript:void(0);" class="go_btn btn btn-small btn-primary"><span class="fa fa-share-square-o" aria-hidden="true"></span> Forward</a>    
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <div id='mailstatus' style="width: 100%;background: #f9f9f9;text-align: left;font-weight: normal;">
+
+                </div>
+            </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!--div class="modal fade" id="doc-ff" tabindex="-1" role="dialog" aria-labelledby="ff-modal-label" aria-hidden="true">
   <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
     <div class="modal-content">
       <div class="modal-header"><span style="font-size: 24px; color: #FF4000; text-align: center;"><strong>DOCUMENT TRACKING SYSTEM</strong></span>
@@ -736,7 +947,7 @@ margin-top: 10px;
       </div>
     </div>
   </div>
-</div>
+</div-->
 
 <script>
     $(document).ready(function() {
@@ -754,6 +965,193 @@ margin-top: 10px;
                 }).animate({ opacity: 1 }, 2000);
 
                 $("#container").height($(document).height());
+
+        // set the default value
+        // division            
+            var defval = $(document).find("#divisionselect").val();
+        //    getUserList(false,defval);
+
+            $(document).find("#ff_divisions").val(defval);
+
+            // employees 
+            $(document).find("#ff_employees").val("");
+
+            $(document).on("change keyup paste","#ff_employees" ,function() {
+                var thename = $(this).val();
+                $(document).find("#insfor").text("for "+thename);
+            });
+
+        // end 
+
+        $(document).on("click","#addthisemp",function(){
+            var theemp = $(document).find("#ff_employees").val();
+                         $(document).find("#ff_employees").val("");
+
+                $("<p>"+theemp+"</p>")
+                    .on("click", function(){
+                        var conf = confirm("are you sure you want to remove?");
+
+                        if (conf) { // confirmed delete
+                            $(this).remove();
+                        }
+                    }).appendTo("#recipientsbox");
+        });
+
+        $(document).on("change","#divisionselect",function(){
+            var theval = $(this).val();
+
+            getUserList(false, theval);
+
+            $(document).find("#ff_divisions").val( theval );
+        });
+
+        var recipients_lists = [];
+
+        $(document).on("click", ".go_btn", function(e) {
+        var CSRF_TOKEN  =   $('meta[name="csrf-token"]').attr('content');
+        var dept        =   $('input#ff_divisions').val(); // mark here
+        var x_id        =   $('input#_id').val();
+        var rem         =   $('textarea#remarks').val();
+
+        /*
+        var faction     =   $('input#for_appro_action').val();
+        var finfo       =   $('input#for_info').val();
+        var fguidance   =   $('input#for_guidance').val();
+        var freference  =   $('input#for_reference').val();
+        var freview  =   $('input#for_review').val();
+        */
+
+        //alert(dept);
+
+        if (document.getElementById('for_appro_action').checked) {
+            var faction = 1;
+        } else {
+             var faction = 0;
+        }
+
+        if (document.getElementById('for_info').checked) {
+            var finfo = 1;
+        } else {
+             var finfo = 0;
+        }
+
+        if (document.getElementById('for_guidance').checked) {
+            var fguidance = 1;
+        } else {
+             var fguidance = 0;
+        }
+
+        if (document.getElementById('for_reference').checked) {
+            var freference = 1;
+        } else {
+             var freference = 0;
+        }
+
+        if (document.getElementById('for_review').checked) {
+            var freview = 1;
+        } else {
+             var freview = 0;
+        }
+
+        if (document.getElementById('for_signature').checked) {
+            var fsignature = 1;
+        } else {
+             var fsignature = 0;
+        }
+
+        var pr          = $('#docclassification option:selected').val();
+        var confiname   =   $('input#ff_employees').val();
+
+        if(dept.length === 0){
+            //alert("Please specify the Division you want to forward this document");
+            swal({
+                              position: 'center',
+                              icon: 'info',
+                              title: 'Please specify the Division  you want to forward this document',
+                              showConfirmButton: false
+                            });
+        }else{
+
+            document.getElementById('busywait').style.display = "table-row";
+
+            var els = $(document).find("#recipientsbox").children("p");
+
+            for(var i=0;i<=els.length-1;i++) {
+                // innerText
+                recipients_lists.push(els[i].innerText);
+            }
+
+            // console.log(els[0].innerText);
+
+        //    return;
+        // send email
+            forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
+        //     document.getElementById('busywait').style.display = "none"; 
+        //    window.location.reload();
+            e.preventDefault();
+            
+        }
+        
+    });
+    
+    function forwardtoemps(startswith, CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr) {
+
+        $.ajax({
+                url: "{{ url('/internal-document/forward') }}/"+x_id,
+                type: "POST",
+                data: {_token: CSRF_TOKEN,
+                       _id: x_id,
+                       remarks: rem, 
+                       division: dept, 
+                       for_appro_action: faction, 
+                       for_info:finfo, 
+                       for_guidance:fguidance, 
+                       for_reference:freference, 
+                       for_review:freview, 
+                       for_signature:fsignature, 
+                       confi:recipients_lists[startswith],
+                       _classification:pr},
+
+                success: function(response){
+
+                    //tempAlert("Document forwarded successfully save.",2000);
+
+                    // sent email here
+                    $("<p> Mail is sent to "+recipients_lists[startswith]+" </p>").appendTo("#mailstatus");
+
+                    // swal({
+                    //           position: 'center',
+                    //           icon: 'info',
+                    //           title: 'Document forwarded successfully.',
+                    //           showConfirmButton: false,
+                    //           timer: 1500
+                    //         });
+
+                    if (startswith < recipients_lists.length-1) {
+                        var thenewstart = startswith+1;
+                        forwardtoemps(thenewstart, CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
+                    }
+
+                    if (startswith == recipients_lists.length-1) {
+                        document.getElementById('busywait').style.display = "none";    
+                    }
+
+                    //$('#doc-ff').modal('hide');
+                    //window.location.href="{{ url('/internal-document-list-view') }}";
+                    
+                  },
+                  error: function(ex){
+                    // swal({
+                    //       position: 'center',
+                    //       icon: 'error',
+                    //       title: 'Sending mail failed!, please check your internet connection and Email Addresses',
+                    //       showConfirmButton: false
+                    //     });
+                    // alert(JSON.stringify(ex));
+                    // window.location.href="{{ url('/home') }}";
+                  },
+                });
+    }
 
 });
 
@@ -882,7 +1280,7 @@ margin-top: 10px;
     //document.getElementById("date").innerHTML = months[n.getMonth()] + " " + d + ", " + y;
     //document.getElementById("date").innerHTML = months[n.getMonth()] + " " + y;
 
-    $(document).on("click", ".go_btn", function(e) {
+    $(document).on("click", ".go_btn_not_in_use", function(e) {
         var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
         var dept        =   $('input#ff_divisions').val();
         var x_id        =   $('input#_id').val();
@@ -1099,8 +1497,20 @@ margin-top: 10px;
 
     });
 
-    function getUserList(ul){
-        var u = (ul.value || ul.options[ul.selectedIndex].value);
+    function getUserList(ul, div = false){
+        
+        var u = null;
+
+        if (ul != false) {
+            u = (ul.value || ul.options[ul.selectedIndex].value);
+        } else {
+            if (div == false) {
+                // alert("Division is empty");
+            } else {
+                u = div;
+            }
+        }
+
         $.ajax({
                 url: "{{ url('/get-users') }}/"+u,
                 context: document.body,
@@ -1118,6 +1528,27 @@ margin-top: 10px;
 
         });
     };
+
+    // function getUserList(ul){
+    //     var u = (ul.value || ul.options[ul.selectedIndex].value);
+    //     $.ajax({
+    //             url: "{{ url('/get-users') }}/"+u,
+    //             context: document.body,
+    //             success: function(data){
+    //               console.log(data);
+
+    //                 $('#userlist').find('option').remove();
+    //                 $.each(data.data, function(key, value) {
+                            
+    //                         $('#userlist').append(`<option value="${value.f_name}">${value.f_name}</option>`);
+                        
+    //                 });
+              
+    //             }
+
+    //     });
+    // };
+
 
 </script>
 @endsection
