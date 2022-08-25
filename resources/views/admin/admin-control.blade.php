@@ -41,7 +41,7 @@ $(document).ready(function(e){
     }
 
     .inactive {
-        background: #aca7a8;
+        background: #aca7a8 !important;
     }
 
     .settingstbl {
@@ -132,10 +132,10 @@ $(document).ready(function(e){
 
                                 @foreach($userlist as $user)
                                 <?php 
-                                    
                                     $class = null;
-                                    if ( strlen(trim($user->division)) == 0) {
+                                    if ( strlen(trim($user->division)) == 0 ) {
                                         $class = "inactive";
+                                        
                                     } else {
                                         $class = null;
 
@@ -147,6 +147,7 @@ $(document).ready(function(e){
                                             array_push($thedivision,$user->division);
                                         }
                                     }
+                                    
 
                                 ?>
                                 <tr class='<?php echo $class; ?>'>

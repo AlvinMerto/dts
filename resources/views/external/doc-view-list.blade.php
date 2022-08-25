@@ -35,12 +35,126 @@ $(document).ready(function(e){
 });
 </script>
 
+<style>
+     table th td,table th,table td {
+        padding-left: 16px;
+    }
+
+    table td p {
+        margin-bottom: 3px;
+    }
+
+    #recipientsbox p:hover {
+        cursor: pointer;
+        color: red;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    #mailstatus p {
+        padding: 5px;
+        margin-bottom: 0px;
+    }
+
+    .theinnertbl {
+
+    }
+
+    .theinnertbl tr {
+        border-left: 1px solid #e6e6e6;
+        border-right: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .theinnertbl tr th{
+        font-size: 12px;
+font-weight: bold;
+color: #86898a;
+border: 1px solid #e6e6e6;
+    }
+
+    .border_bottom {
+
+    }
+
+    .border_bottom td {
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    .tr_contents td{
+        border: 1px solid #ccc;
+        white-space: normal;
+        overflow: visible;
+        vertical-align: top;
+        text-align: center;
+    }
+
+
+    .whiteboxes {
+
+    }
+
+    .whiteboxes input[type="text"]{
+        background: none !important;
+    }
+
+    .input-group-btn button {
+        background: transparent !important;
+    }
+
+    .removeborder {
+        border: 1px solid #ccc !important;
+    }
+
+    .highprio {
+        background: #F00;
+        color: #fff;
+        padding: 6px;
+        text-align: center;
+        border-radius: 99px;
+    }
+
+    .modprio {
+         background: #3549B5;
+        color: #fff;
+        padding: 6px;
+        text-align: center;
+        border-radius: 99px;
+    }
+
+    .lowprio {
+         background: #c3c3c3;
+        color: #fff;
+        padding: 6px;
+        text-align: center;
+        border-radius: 99px;
+    }
+
+    .confi {
+         background: #FF6361;
+        color: #fff;
+        padding: 6px;
+        text-align: center;
+        border-radius: 99px;
+    }
+
+    .undef {
+         background: #333333;
+        color: #fff;
+        padding: 6px;
+        text-align: center;
+        border-radius: 99px;
+    }
+
+</style>
+
 <input type="hidden" name="type_input" id="type_input" value="external">
 <div class="content-wrapper ml-2" style="width: 115%">
     <div class="row justify-content-center" style="width: 100%">
         <div class="col-md-8" style="width: 100%">
             <div class="card mt-3">
-                <div class="card-header bg-success" style="font-size: 16px; font-weight: bold; color: #fff;">External Document Lists</div>
+                <div style="font-size: 18px;  color: #4f4e4e;font-weight: normal;" class="card-header">External Document Lists</div>
                     <div class="card-body" style="display: flex; justify-content: center;">
 
                         <section style="width: 100%">
@@ -50,8 +164,8 @@ $(document).ready(function(e){
                                     <input type="hidden" id="q_user_level" name="q_user_level" class="form-control" value="{{ Auth::user()->access_level }}">
                                     <tr>
                                         <td class="d-flex">
-                                              <div class="sidebar-form" style="width: 200px; margin-left: 5px;">
-                                                    <div class="input-group">
+                                              <div class="sidebar-form removeborder" style="width: 200px; margin-left: 5px;">
+                                                    <div class="input-group whiteboxes">
                                                         <input type="text" id="q" name="q" class="form-control" placeholder="Barcode search...">
                                                         <span class="input-group-btn">
                                                             <button type="submit" name="search" id="search-btn" class="searchbtn btn btn-flat" style="height: 25pt; margin-top: -1px;" >
@@ -61,9 +175,9 @@ $(document).ready(function(e){
                                                     </div>
                                                 </div>
 
-                                                <div class="sidebar-form" style="width: 200px; margin-left: 5px;">
-                                                    <div class="input-group">
-                                                        <input list="datelist" placeholder="Filter by date" name="ff_date" id="ff_date" class="form-control">
+                                                <div class="sidebar-form removeborder" style="width: 200px; margin-left: 5px;">
+                                                    <div class="input-group whiteboxes">
+                                                        <input list="datelist" type="text" placeholder="Filter by date" name="ff_date" id="ff_date" class="form-control">
                                                         <span class="input-group-btn">
                                                             <button type="submit" name="search" id="search-btn-date" class="searchbtn-date btn btn-flat" >
                                                               <i class="fa fa-search"></i>
@@ -79,9 +193,9 @@ $(document).ready(function(e){
                                                     </div>
                                                 </div>
 
-                                                <div class="sidebar-form" style="width: 200px; margin-left: 5px;">
-                                                    <div class="input-group">
-                                                        <input list="typelists" placeholder="Filter by Type" name="ff_type" id="ff_type" class="form-control">
+                                                <div class="sidebar-form removeborder" style="width: 200px; margin-left: 5px;">
+                                                    <div class="input-group whiteboxes">
+                                                        <input list="typelists" type="text" placeholder="Filter by Type" name="ff_type" id="ff_type" class="form-control">
                                                         <span class="input-group-btn">
                                                             <button type="submit" name="search" id="search-btn-type" class="searchbtn-type btn btn-flat" >
                                                               <i class="fa fa-search"></i>
@@ -116,74 +230,75 @@ $(document).ready(function(e){
 
                             <table style="align-self: center; width: 100%;">
                                 <tr class="border_bottom">
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Document Date</td>
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Barcode</td>
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Document Category/Type</td>
-                                    <td align="center" style="width: 250px !important; padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;" 
-                                    >Description</td>
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Agency/Office</td>
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">File Type</td>
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Status</td>
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;"># Days</td>
-                                    <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Classification</td>
-                                    <td colspan="2" align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Action</td>
+                                    <td>Document Date</td>
+                                    <td>Barcode</td>
+                                    <td>Document Category/Type</td>
+                                    <td>Description</td>
+                                    <td>Agency/Office</td>
+                                    <td>File Type</td>
+                                    <td>Status</td>
+                                    <td># Days</td>
+                                    <td>Classification</td>
+                                    <td>Action</td>
                                 </tr>
 
+                                
                                 @foreach($data as $d)
-
-                                <tr>
+                                <?php $priolvl = null; $prioclass = null; $display = true;?>
+                                <tr class='tr_contents'>
                                     @if($d->actioned == 0)
                                         @if($d->classification == 1 && $d->confi_name == Auth::user()->f_name)
                                              @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->barcode}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->agency}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->type}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
-       class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Confidential</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td>{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <td>{{$d->barcode}}</td>
+                                                <td>{{$d->doctitle}}</td>
+                                                <td>{{$d->description}}</td>
+                                                <td>{{$d->agency}}</td>
+                                                <td>{{$d->type}}</td>
+                                                <td data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}" class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
+                                                <td>{{$d->days_count}}</td>
+                                                <td>Confidential</td-->
                                              @else
-                                                <td align="center" style="color: #FE0001; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
-                                                <td align="center" style="color: #FE0001; font-weight: bold;">{{$d->barcode}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #FE0001;">{{$d->doctitle}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #FE0001;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
-                                                <td align="center" style="color: #FE0001; font-weight: bold;">{{$d->agency}}</td>
-                                                <td align="center" style="color: #FE0001; font-weight: bold;">{{$d->type}}</td>
-                                                <td align="center" style="color: #FE0001; font-weight: bold;"><a href="#" style="text-decoration: none; color: #FE0001;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{$d->date_forwared }}<br><br>{{$d->remarks}}"
-       class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
-                                                <td align="center" style="color: #FE0001; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #FE0001; font-weight: bold;">Confidential</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td>{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <td>{{$d->barcode}}</td>
+                                                <td>{{$d->doctitle}}</td>
+                                                <td>{!! Str::limit($d->description, 100, ' ...') !!}</td>
+                                                <td>{{$d->agency}}</td>
+                                                <td>{{$d->type}}</td>
+                                                <td><a href="#" style="text-decoration: none; color: #FE0001;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{$d->date_forwared }}<br><br>{{$d->remarks}}" class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
+                                                <td>{{$d->days_count}}</td>
+                                                <td>Confidential</td-->
                                             @endif
                                         @elseif($d->classification == 1 && $d->confi_name == Auth::user()->f_name || $d->classification == 1 && Auth::user()->access_level==5)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->barcode}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->agency}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->type}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
-       class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Confidential</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td>{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <td>{{$d->barcode}}</td>
+                                                <td>{{$d->doctitle}}</td>
+                                                <td>{!! Str::limit($d->description, 100, ' ...') !!}</td>
+                                                <td>{{$d->agency}}</td>
+                                                <td>{{$d->type}}</td>
+                                                <td><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}" class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
+                                                <td>{{$d->days_count}}</td>
+                                                <td>Confidential</td-->
                                             @else
-                                                <td align="center" style="color: #045FB4; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
-                                                <td align="center" style="color: #045FB4; font-weight: bold;">{{$d->barcode}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #045FB4;">{{$d->doctitle}}</td>
-                                                <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #045FB4;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td>{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <td>{{$d->barcode}}</td>
+                                                <td>{{$d->doctitle}}</td>
+                                                <td>{{$d->description}}</td>
                                                 <td align="center" style="color: #045FB4; font-weight: bold;">{{$d->agency}}</td>
                                                 <td align="center" style="color: #045FB4; font-weight: bold;">{{$d->type}}</td>
-                                                <td align="center" style="color: #045FB4; font-weight: bold;"><a href="#" style="text-decoration: none; color: #045FB4;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
-       class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
+                                                <td align="center" style="color: #045FB4; font-weight: bold;"><a href="#" style="text-decoration: none; color: #045FB4;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}" class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #045FB4; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #045FB4; font-weight: bold;">Confidential</td>
+                                                <td align="center" style="color: #045FB4; font-weight: bold;">Confidential</td-->
                                             @endif
                                         @elseif($d->classification == 1 && $d->confi_name != Auth::user()->f_name)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                             <?php $priolvl = "Confidential"; $prioclass = "confi"; $display=false;?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">Confidential</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">Confidential</td>
@@ -191,9 +306,10 @@ $(document).ready(function(e){
                                                 <td align="center"><div id="stattooltip_{{$d->id}}" style="background: #F4A8A9; color: #434243; font-weight: bold;">Confidential></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Confidential</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Confidential</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Confidential</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Confidential</td-->
                                             @else
-                                                <td align="center" style="color: #DF013A; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                 <?php $priolvl = "Confidential"; $prioclass = "confi";  $display=false;?>
+                                                <!--td align="center" style="color: #DF013A; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #DF013A; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #DF013A;">Confidential</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #DF013A;">Confidential</td>
@@ -201,11 +317,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #DF013A; font-weight: bold;">Confidential</td>
                                                 <td align="center"><span style="color: #DF013A; font-weight: bold;">Confidential></td>
                                                 <td align="center" style="color: #DF013A; font-weight: bold;">Confidential</td>
-                                                <td align="center" style="color: #DF013A; font-weight: bold;">Confidential</td>
+                                                <td align="center" style="color: #DF013A; font-weight: bold;">Confidential</td-->
                                             @endif
                                         @elseif($d->classification == 2)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                 <?php $priolvl = "High Priority"; $prioclass = "highprio"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -214,9 +331,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">High Priority</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">High Priority</td-->
                                             @else
-                                                <td align="center" style="color: #DF013A; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "High Priority"; $prioclass = "highprio"; ?>
+                                                <!--td align="center" style="color: #DF013A; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #DF013A; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #DF013A;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #DF013A;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -225,11 +343,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #DF013A; font-weight: bold;"><a href="#" style="text-decoration: none; color: #DF013A;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #DF013A; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #DF013A; font-weight: bold;">High Priority</td>
+                                                <td align="center" style="color: #DF013A; font-weight: bold;">High Priority</td-->
                                             @endif
                                         @elseif($d->classification == 3)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Moderate Priority"; $prioclass = "modprio"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -238,9 +357,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Moderate Priority</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Moderate Priority</td-->
                                             @else
-                                                <td align="center" style="color: #B505AE; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Moderate Priority"; $prioclass = "modprio"; ?>
+                                                <!--td align="center" style="color: #B505AE; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #B505AE; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #B505AE;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #B505AE;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -249,11 +369,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #B505AE; font-weight: bold;"><a href="#" style="text-decoration: none; color: #B505AE;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #B505AE; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #B505AE; font-weight: bold;">Moderate Priority</td>
+                                                <td align="center" style="color: #B505AE; font-weight: bold;">Moderate Priority</td-->
                                             @endif
                                         @elseif($d->classification == 4)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Low Priority"; $prioclass = "lowprio"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -262,9 +383,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Low Priority</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Low Priority</td-->
                                             @else
-                                                <td align="center" style="color: #045FB4; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Low Priority"; $prioclass = "lowprio"; ?>
+                                                <!--td align="center" style="color: #045FB4; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #045FB4; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #045FB4;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #045FB4;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -273,11 +395,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #045FB4; font-weight: bold;"><a href="#" style="text-decoration: none; color: #045FB4;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #045FB4; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #045FB4; font-weight: bold;">Low Priority</td>
+                                                <td align="center" style="color: #045FB4; font-weight: bold;">Low Priority</td-->
                                             @endif
                                         @else
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Undefined"; $prioclass = "undef"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -286,9 +409,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Undefined</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: bold;">Undefined</td-->
                                             @else
-                                                <td align="center" style="color: #0A610A; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Undefined"; $prioclass = "undef"; ?>
+                                                <!--td align="center" style="color: #0A610A; font-weight: bold;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #0A610A; font-weight: bold;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #0A610A;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: bold;color: #0A610A;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -297,7 +421,7 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #0A610A; font-weight: bold;"><a href="#" style="text-decoration: none; color: #0A610A;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #0A610A; font-weight: bold;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #0A610A; font-weight: bold;">Undefined</td>
+                                                <td align="center" style="color: #0A610A; font-weight: bold;">Undefined</td-->
                                             @endif
                                         @endif
 
@@ -305,7 +429,8 @@ $(document).ready(function(e){
 
                                         @if($d->classification == 1 && $d->confi_name == Auth::user()->f_name)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -314,9 +439,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td-->
                                             @else
-                                                <td align="center" style="color: #045FB4; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td align="center" style="color: #045FB4; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #045FB4; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #045FB4;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #045FB4;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -324,11 +450,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #045FB4; font-weight: normal;"><a href="#" style="text-decoration: none; color: #045FB4;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #045FB4; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #045FB4; font-weight: normal;">Confidential</td>
+                                                <td align="center" style="color: #045FB4; font-weight: normal;">Confidential</td-->
                                             @endif
                                         @elseif($d->classification == 1 && $d->confi_name == Auth::user()->f_name || $d->classification == 1 && Auth::user()->access_level==5)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -336,9 +463,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td-->
                                             @else
-                                                <td align="center" style="color: #045FB4; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; ?>
+                                                <!--td align="center" style="color: #045FB4; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #045FB4; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #045FB4;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #045FB4;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -347,11 +475,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #045FB4; font-weight: normal;"><a href="#" style="text-decoration: none; color: #045FB4;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #045FB4; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #045FB4; font-weight: normal;">Confidential</td>
+                                                <td align="center" style="color: #045FB4; font-weight: normal;">Confidential</td-->
                                             @endif
                                         @elseif($d->classification == 1 && $d->confi_name != Auth::user()->f_name)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; $display=false; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">Confidential</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">Confidential</td>
@@ -359,9 +488,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Confidential</td-->
                                             @else
-                                                <td align="center" style="color: #DF013A; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Confidential"; $prioclass = "confi"; $display=false; ?>
+                                                <!--td align="center" style="color: #DF013A; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #DF013A; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #DF013A;">Confidential</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #DF013A;">Confidential</td>
@@ -369,11 +499,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #DF013A; font-weight: normal;">Confidential</td>
                                                 <td align="center" style="color: #DF013A; font-weight: normal;">Confidential</td>
                                                 <td align="center" style="color: #DF013A; font-weight: normal;">Confidential</td>
-                                                <td align="center" style="color: #DF013A; font-weight: normal;">Confidential</td>
+                                                <td align="center" style="color: #DF013A; font-weight: normal;">Confidential</td-->
                                             @endif
                                         @elseif($d->classification == 2)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "High Priority"; $prioclass = "highprio"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -384,9 +515,10 @@ $(document).ready(function(e){
        class="rem-tooltip" data-html="true">{{$d->status}}</a>
                                                 </td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">High Priority</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">High Priority</td-->
                                             @else
-                                                <td align="center" style="color: #DF013A; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "High Priority"; $prioclass = "highprio"; ?>
+                                                <!--td align="center" style="color: #DF013A; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #DF013A; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #DF013A;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #DF013A;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -399,11 +531,12 @@ $(document).ready(function(e){
                                                     
                                                 </td>
                                                 <td align="center" style="color: #DF013A; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #DF013A; font-weight: normal;">High Priority</td>
+                                                <td align="center" style="color: #DF013A; font-weight: normal;">High Priority</td-->
                                             @endif
                                         @elseif($d->classification == 3)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Moderate Priority"; $prioclass = "modprio"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -412,9 +545,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Moderate Priority</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Moderate Priority</td-->
                                             @else
-                                                <td align="center" style="color: #B505AE; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Moderate Priority"; $prioclass = "highprio"; ?>
+                                                <!--td align="center" style="color: #B505AE; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #B505AE; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #B505AE;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #B505AE;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -423,11 +557,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #B505AE; font-weight: normal;"><a href="#" style="text-decoration: none; color: #B505AE;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #B505AE; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #B505AE; font-weight: normal;">Moderate Priority</td>
+                                                <td align="center" style="color: #B505AE; font-weight: normal;">Moderate Priority</td-->
                                             @endif
                                         @elseif($d->classification == 4)
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Low Priority"; $prioclass = "lowprio"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -436,9 +571,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;"><a href="#" style="text-decoration: none; color: #434243;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Low Priority</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Low Priority</td-->
                                             @else
-                                                <td align="center" style="color: #045FB4; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Low Priority"; $prioclass = "lowprio"; ?>
+                                                <!--td align="center" style="color: #045FB4; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #045FB4; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #045FB4;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #045FB4;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -447,11 +583,12 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #045FB4; font-weight: normal;"><a href="#" style="text-decoration: none; color: #045FB4;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #045FB4; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #045FB4; font-weight: normal;">Low Priority</td>
+                                                <td align="center" style="color: #045FB4; font-weight: normal;">Low Priority</td-->
                                             @endif
                                         @else
                                             @if($d->days_count>5)
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Undefined"; $prioclass = "undef"; ?>
+                                                <!--td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;background: #F4A8A9; color: #434243;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -460,9 +597,10 @@ $(document).ready(function(e){
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;"><a href="#" style="text-decoration: none; color: #DF013A;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Undefined</td>
+                                                <td align="center" style="background: #F4A8A9; color: #434243; font-weight: normal;">Undefined</td-->
                                             @else
-                                                <td align="center" style="color: #0A610A; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <?php $priolvl = "Undefined"; $prioclass = "undef"; ?>
+                                                <!--td align="center" style="color: #0A610A; font-weight: normal;">{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                                 <td align="center" style="color: #0A610A; font-weight: normal;">{{$d->barcode}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #0A610A;">{{$d->doctitle}}</td>
                                                 <td align="left" style="white-space: pre-wrap; font-weight: normal;color: #0A610A;">{!! Str::limit($d->description, 100, ' ...') !!}</td>
@@ -471,64 +609,83 @@ $(document).ready(function(e){
                                                 <td align="center" style="color: #0A610A; font-weight: normal;"><a href="#" style="text-decoration: none; color: #0A610A;" data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}"
        class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
                                                 <td align="center" style="color: #0A610A; font-weight: normal;">{{$d->days_count}}</td>
-                                                <td align="center" style="color: #0A610A; font-weight: normal;">Undefined</td>
+                                                <td align="center" style="color: #0A610A; font-weight: normal;">Undefined</td-->
                                             @endif
                                         @endif
                                     @endif
+                                            <?php // $priolvl = "confidential"; $prioclass = "confi"; ?>
+                                                <td>{{date('M d, Y', strtotime($d->doc_receive))}}</td>
+                                                <td>{{$d->barcode}}</td>
+                                                <?php if ($display == true) { ?>
+                                                    <td>{{$d->doctitle}}</td>
+                                                    <td>{{$d->description}}</td>
+                                                    <td>{{$d->agency}}</td>
+                                                    <td>{{$d->type}}</td>
+                                                    <td data-toggle="tooltip" data-placement="auto" title="" data-original-title="<b>Latest Action:</b><br>{{$d->destination}}<br>{{ $d->date_forwared }}<br><br>{{$d->remarks}}" class="rem-tooltip" data-html="true">{{$d->status}}</a></td>
+                                                    <td>{{$d->days_count}}</td>
+                                                <?php } else { ?>
+                                                    <td> confidential </td>
+                                                    <td> confidential </td>
+                                                    <td> confidential </td>
+                                                    <td> confidential </td>
+                                                    <td> confidential </td>
+                                                    <td> confidential </td>
+                                                <?php } ?>
+                                                <td><?php echo "<p class='{$prioclass}'>". $priolvl ."</p>"; ?></td>
 
                                     @if($d->days_count>5)
                                         <td align="center" style="background: #F4A8A9;">
                                             @if($d->confi_name == Auth::user()->f_name && $d->classification == 1 || $d->classification == 1 && Auth::user()->access_level==5)
-                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-success pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
+                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-default pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
                                             @elseif($d->classification != 1)
-                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-success pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
+                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-default pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
                                             @endif
                                             @if($d->status=='complete' && Auth::user()->division == $d->dept)
                                                 @if(Auth::user()->access_level==5)
                                                     <br>
-                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-danger mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
+                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-default mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
                                                 @endif
                                             @else
                                                     <br>
                                                 @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
-                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-primary mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
+                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-default mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
                                                 @elseif($d->confi_name != Auth::user()->f_name && $d->classification == 1)
-                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-primary mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
+                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-default mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
                                                 @elseif($d->classification != 1)
-                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-primary mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
+                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-default mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
                                                 @endif
 
                                                 @if(Auth::user()->access_level==5)
                                                     <br>
-                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-danger mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
+                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-default mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
                                                 @endif
                                             @endif
                                         </td>
                                     @else
                                         <td align="center" >
                                             @if($d->confi_name == Auth::user()->f_name && $d->classification == 1 || $d->classification == 1 && Auth::user()->access_level==5)
-                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-success pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
+                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-default pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
                                             @elseif($d->classification != 1)
-                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-success pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
+                                                <a href="{{url('/external-document-track-list-view/view-document-tracking')}}/{{$d->ref_id}}" id="{{$d->id}}" class="btn btn-default pl-4 pr-4"><span class="fa fa-envelope-open-o" aria-hidden="true"></span> View</a>
                                             @endif
                                             @if($d->status=='complete' && Auth::user()->division == $d->dept)
                                                 @if(Auth::user()->access_level==5)
                                                     <br>
-                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-danger mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
+                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-default mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
                                                 @endif
                                             @else
                                                     <br>
                                                 @if($d->confi_name == Auth::user()->f_name && $d->classification == 1)
-                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-primary mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
+                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-default mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
                                                 @elseif($d->confi_name != Auth::user()->f_name && $d->classification == 1)
-                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-primary mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
+                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-default mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
                                                 @elseif($d->classification != 1)
-                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-primary mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
+                                                    <a href="#" id="{{$d->ref_id}}" class="btn-ff btn btn-default mt-2  pl-3 pr-3"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</a>
                                                 @endif
 
                                                 @if(Auth::user()->access_level==5)
                                                     <br>
-                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-danger mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
+                                                    <a href="javascript:void(0);" id="{{$d->ref_id}}" class="go_edit_btn btn btn-small btn-default mt-2  pl-4 pr-4"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> Edit </a>
                                                 @endif
                                             @endif
                                         </td>
@@ -559,7 +716,7 @@ $(document).ready(function(e){
 
 <!-- Forward Modal -->
 
-<div class="modal fade" id="doc-ff" tabindex="-1" role="dialog"aria-labelledby="ff-modal-label" aria-hidden="true">
+<!--div class="modal fade" id="doc-ff" tabindex="-1" role="dialog"aria-labelledby="ff-modal-label" aria-hidden="true">
   <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
     <div class="modal-content">
       <div class="modal-header"><span style="font-size: 24px; color: #FF4000; text-align: center;"><strong>DOCUMENT TRACKING SYSTEM</strong></span>
@@ -661,8 +818,178 @@ $(document).ready(function(e){
       </div>
     </div>
   </div>
-</div>
+</div-->
 
+<div class="modal fade" id="doc-ff" tabindex="-1" role="dialog" aria-labelledby="ff-modal-label" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
+    <div class="modal-content">
+      <div class="modal-header"><span style="font-size: 17px; color: #97918F; text-align: center;"><strong>DOCUMENT TRACKING SYSTEM</strong></span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.reload();">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <span id="form_result"></span>
+            <table style="table-layout:fixed;border-collapse: collapse;">
+                <tr>
+                    <th style="font-size: 15px; color: #0B3861;" text-align="left"> 
+                        Level of priority
+                    </th>
+                    <td> 
+                        <select class="form-control btn btn-primary" id="docclassification" name="docclassification" onchange="checkClass()" style="width: 130px;"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="font-size: 15px; color: #0B3861;" text-align="left">Forward to:</th>
+                    <td class="p-3" style="border-bottom: none; background: #f2f2f2">
+                        <p> Division </p>
+                        <select id='divisionselect' class='btn btn-default' style='width: 100%;'>
+                            <?php 
+                                if ($div->count()>0) {
+                                    foreach($div as $d) {
+                                        if (strlen($d->division) > 0) {
+                                            echo "<option value='{$d->division}'>";
+                                                echo $d->division;
+                                            echo "</option>";
+                                        }
+                                    }
+                                }
+                            ?>
+                        </select>
+
+                        <input list="divisions" placeholder="Division" name="ff_divisions" id="ff_divisions" class="form-control" onchange="getUserList(this);" style='display:none;'>
+                        <datalist id="divisions">
+                            @if($div->count()>0)
+                            @foreach($div as $d)
+                                <option value="{{ $d->division }}"></option>
+                            @endforeach
+                            @endif
+                        </datalist>
+
+                        <input type="hidden" id="optselect" name="optselect">
+                    </td>
+                    <!-- mark here -->
+                    <input type="hidden" id="_id" name="_id" value="">
+                    <input type="hidden" id="person" name="person" value="">
+
+                <!--/tr>
+                <tr-->
+                    
+                    <td colspan="2" valign="middle" class="mt-1" align="left" style="margin-left: -5px !important;">
+                        <p> Employee Name </p>
+                        <input list="userlist" placeholder="MinDA Employee" name="ff_employees" id="ff_employees" class="form-control">
+                            <datalist id="userlist">
+                                @if($userlist->count()>0)
+                                    @foreach($userlist as $l)
+                                        <option value="{{ $l->f_name }}">
+                                    @endforeach
+                                @endif
+                            </datalist>
+                    </td>
+                    <td style='padding: 0px;'>
+                        <p> &nbsp; </p>
+                        <button class='btn btn-default' id='addthisemp'> Add </button>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" align="center"><span style="font-style: italic;">"Note: double-click the box or down arrow to show the list"</span></td>
+                </tr>
+        </table>
+        <table>
+                <tr style='border-top:1px solid #ccc; border-bottom: 1px solid #ccc;'>
+                    <th style="font-size: 15px; color: #0B3861;" align="left">Action</th>
+                    <!--th style="font-size: 15px; color: #0B3861;" align="left">Specific Instruction <span id='insfor'> </span> </th-->
+                    <th style="font-size: 15px; color: #0B3861;" align="left"> Recipients </th>
+                    <td> &nbsp; </td>
+                </tr>
+                <tr>
+                    <td align="left" style="word-wrap: break-word; vertical-align:top;" >
+                        <p>
+                            <input type="checkbox" name="for_appro_action" id="for_appro_action" style="vertical-align: text-bottom;"><b> <label for='for_appro_action'>for appropriate action </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_info" id="for_info" style="vertical-align: text-bottom; font-weight: bold;"><b> <label for='for_info'> for information </label> </b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_reference" id="for_reference" style="vertical-align: text-bottom; font-weight: bold;"><b> <label for='for_reference'> for reference </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_guidance" id="for_guidance" style="vertical-align: text-bottom; font-weight: bold;"><b> <label for='for_guidance'> for guidance </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_review" id="for_review" style="vertical-align: text-bottom;"><b> <label for='for_review'> for review and evaluation </label></b>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="for_signature" id="for_signature" style="vertical-align: text-bottom;"><b> <label for='for_signature'> for approval/signature </label> </b>
+                        </p>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <div id='recipientsbox'>
+
+                        </div>
+                        <!--p> <input type="text" style="padding: 10px;width: 100%;border: 1px solid #ccc;border-radius: 4px;"> </p>
+                        <p> <button class='btn btn-default'> Add Instruction </button> </p-->
+                    </td>
+                    <td style='vertical-align: top;'>
+                        <!--div>
+                            <p> Presentation </p>
+                        </div-->
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td align="left" class="p-3" style="border-bottom: none; background: #fff">
+                        <label for="remarks" style="font-size: 15px; color: #0B3861;" >Remarks</label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea id="remarks" name="remarks" rows="3" style="width: 100%; max-width: 100%;border: 1px solid #ccc;border-radius: 4px;resize: none;padding: 10px;" placeholder=""></textarea>
+                    </td>
+                </tr>
+                
+                <tr id="busywait" style="display: none;">
+                    <td colspan="2" align="center"><span style="color: #3A01DF;"><img src="{{ url('/images/busy_wait.gif') }}" height="40px">
+                        <b>Sending mails... Please wait...</b></span>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="modal-footer">
+                <table>
+                    <tr>
+                        {{--<input type="hidden" id="completedoc" name="completedoc" value="{{$data[0]->retdoc}}">--}}
+
+                        <td class="p-3" style="border-top: solid thin #fff;">
+                            <span style="float: left;" class="mr-3">
+                            @if(Auth::user()->access_level==4)
+                                <a href="javascript:void(0);" class="go_approve btn btn-small btn-default mr-3"><span class="fa fa-smile-o" aria-hidden="true"></span> Approve</a>
+
+                                <a href="javascript:void(0);" class="go_disapprove btn btn-small btn-default mr-3"><span class="fa fa-frown-o" aria-hidden="true"></span> Disapprove</a>
+                            @elseif(Auth::user()->access_level==5 and Auth::user()->division=='AD')
+                                <a href="javascript:void(0);" class="go_approve btn btn-small btn-default mr-3"><span class="fa fa-smile-o" aria-hidden="true"></span> Approve</a>
+
+                                <a href="javascript:void(0);" class="go_disapprove btn btn-small btn-default mr-3"><span class="fa fa-frown-o" aria-hidden="true"></span> Disapprove</a>
+                            @endif
+
+                            <a href="javascript:void(0);" class="go_complete btn btn-small btn-success mr-3"><span class="fa fa-check-square-o" aria-hidden="true"></span> Complete</a>
+
+                            </span>
+                            <span style='float:right;'> 
+                                <a href="javascript:void(0);" class="go_btn btn btn-small btn-primary"><span class="fa fa-share-square-o" aria-hidden="true"></span> Forward</a>    
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <div id='mailstatus' style="width: 100%;background: #f9f9f9;text-align: left;font-weight: normal;">
+
+                </div>
+            </div>
+
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="doc-edit" tabindex="-1" role="dialog"aria-labelledby="edit-modal-label" aria-hidden="true">
   <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
@@ -768,6 +1095,44 @@ $(document).ready(function(e){
 <script>
 
     $(document).ready(function() {
+        // set the default value
+            // division            
+            var defval = $(document).find("#divisionselect").val();
+        //    getUserList(false,defval);
+
+            $(document).find("#ff_divisions").val(defval);
+
+            // employees 
+            $(document).find("#ff_employees").val("");
+
+            $(document).on("change keyup paste","#ff_employees" ,function() {
+                var thename = $(this).val();
+                $(document).find("#insfor").text("for "+thename);
+            });
+
+        // end 
+
+        $(document).on("click","#addthisemp",function(){
+            var theemp = $(document).find("#ff_employees").val();
+                         $(document).find("#ff_employees").val("");
+
+                $("<p>"+theemp+"</p>")
+                    .on("click", function(){
+                        var conf = confirm("are you sure you want to remove?");
+
+                        if (conf) { // confirmed delete
+                            $(this).remove();
+                        }
+                    }).appendTo("#recipientsbox");
+        });
+
+        $(document).on("change","#divisionselect",function(){
+            var theval = $(this).val();
+
+            getUserList(false, theval);
+
+            $(document).find("#ff_divisions").val( theval );
+        });
 
         $(document).on("click", ".btn-ff", function() {
             var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
@@ -847,6 +1212,8 @@ $(document).ready(function(e){
     m = n.getMonth() + 1;
     d = n.getDate();
 
+     var recipients_lists = [];
+
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
     //document.getElementById("date").innerHTML = months[n.getMonth()] + " " + d + ", " + y;
@@ -891,10 +1258,12 @@ $(document).ready(function(e){
         if (document.getElementById('for_signature').checked) {
             var fsignature = 1;
         } else {
-             var fsignature = 0;
+            var fsignature = 0;
         }
 
-        var pr = $('#docclassification option:selected').val();
+        var pr          = $('#docclassification option:selected').val();
+        var confiname   =   $('input#ff_employees').val();
+        // var pr = $('#docclassification option:selected').val();
 
         if(dept.length === 0){
             swal({
@@ -905,46 +1274,122 @@ $(document).ready(function(e){
                             });
 
         }else{
-
             document.getElementById('busywait').style.display = "table-row";
 
-            $.ajax({
-                url: "{{ url('/external-document/forward') }}/"+x_id,
+            var els = $(document).find("#recipientsbox").children("p");
+
+            for(var i=0;i<=els.length-1;i++) {
+                // innerText
+                recipients_lists.push(els[i].innerText);
+            }
+
+            // console.log(els[0].innerText);
+
+            // return;
+            // send email
+            forwardtoemps(0,CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
+            //     document.getElementById('busywait').style.display = "none"; 
+            //    window.location.reload();
+            e.preventDefault();
+
+            // document.getElementById('busywait').style.display = "table-row";
+
+            // $.ajax({
+            //     url: "{{ url('/external-document/forward') }}/"+x_id,
+            //     type: "POST",
+            //     data: {_token: CSRF_TOKEN,_id: x_id,remarks: rem, division: dept, for_appro_action: faction, for_info:finfo, for_guidance:fguidance, for_reference:freference, for_review:freview,for_signature:fsignature,_classification:pr},
+
+            //     success: function(response){
+            //         console.log(response);
+
+            //         //tempAlert("Document forwarded successfully save.",2000);
+            //         swal({
+            //                   position: 'center',
+            //                   icon: 'info',
+            //                   title: 'Document forwarded successfully save',
+            //                   showConfirmButton: false,
+            //                   timer: 1500
+            //                 });
+
+            //         //$('#doc-ff').modal('hide');
+            //        // window.location.href="{{ url('/external-document-list-view') }}";
+            //        document.getElementById('busywait').style.display = "none";
+            //       },
+            //       error: function(ex){
+            //         swal({
+            //                   position: 'center',
+            //                   icon: 'error',
+            //                   title: 'Sending mail failed!, please check your internet coonnection and Email Addresses',
+            //                   showConfirmButton: false
+            //                 });
+            //         alert(JSON.stringify(ex));
+            //         //window.location.href="{{ url('/home') }}";
+            //       },
+            //     });
+            //     e.preventDefault();
+            
+        }
+    });
+
+    function forwardtoemps(startswith, CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr) {
+
+        $.ajax({
+                url: "{{ url('/internal-document/forward') }}/"+x_id,
                 type: "POST",
-                data: {_token: CSRF_TOKEN,_id: x_id,remarks: rem, division: dept, for_appro_action: faction, for_info:finfo, for_guidance:fguidance, for_reference:freference, for_review:freview,for_signature:fsignature,_classification:pr},
+                data: {_token: CSRF_TOKEN,
+                       _id: x_id,
+                       remarks: rem, 
+                       division: dept, 
+                       for_appro_action: faction, 
+                       for_info:finfo, 
+                       for_guidance:fguidance, 
+                       for_reference:freference, 
+                       for_review:freview, 
+                       for_signature:fsignature, 
+                       confi:recipients_lists[startswith],
+                       _classification:pr},
 
                 success: function(response){
                     console.log(response);
 
                     //tempAlert("Document forwarded successfully save.",2000);
-                    swal({
-                              position: 'center',
-                              icon: 'info',
-                              title: 'Document forwarded successfully save',
-                              showConfirmButton: false,
-                              timer: 1500
-                            });
+
+                    // sent email here
+                    $("<p> Mail is sent to "+recipients_lists[startswith]+" </p>").appendTo("#mailstatus");
+
+                    // swal({
+                    //           position: 'center',
+                    //           icon: 'info',
+                    //           title: 'Document forwarded successfully.',
+                    //           showConfirmButton: false,
+                    //           timer: 1500
+                    //         });
+
+                    if (startswith < recipients_lists.length-1) {
+                        var thenewstart = startswith+1;
+                        forwardtoemps(thenewstart, CSRF_TOKEN,x_id,rem,dept,faction,finfo,fguidance,freference,freview,fsignature,confiname,pr);
+                    }
+
+                    if (startswith == recipients_lists.length-1) {
+                        document.getElementById('busywait').style.display = "none";    
+                    }
 
                     //$('#doc-ff').modal('hide');
-                   // window.location.href="{{ url('/external-document-list-view') }}";
-                   document.getElementById('busywait').style.display = "none";
+                    //window.location.href="{{ url('/internal-document-list-view') }}";
+                    
                   },
                   error: function(ex){
                     swal({
                               position: 'center',
                               icon: 'error',
-                              title: 'Sending mail failed!, please check your internet coonnection and Email Addresses',
+                              title: 'Sending mail failed!, please check your internet connection and Email Addresses',
                               showConfirmButton: false
                             });
-                    alert(JSON.stringify(ex));
-                    //window.location.href="{{ url('/home') }}";
+                    //alert(JSON.stringify(ex));
+                    // window.location.href="{{ url('/home') }}";
                   },
                 });
-                e.preventDefault();
-            
-        }
-    });
-
+    }
 
     $(document).on("click", ".go_complete", function(e) {
         var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
@@ -1400,6 +1845,7 @@ $(document).ready(function() {
     });
 });
 
+/*
 function getUserList(ul){
         var u = (ul.value || ul.options[ul.selectedIndex].value);
         $.ajax({
@@ -1418,6 +1864,38 @@ function getUserList(ul){
                 }
 
         });
-    };
+    }
+    */
+
+function getUserList(ul, div = false){
+        
+    var u = null;
+
+    if (ul != false) {
+        u = (ul.value || ul.options[ul.selectedIndex].value);
+    } else {
+        if (div == false) {
+            // alert("Division is empty");
+        } else {
+            u = div;
+        }
+    }
+
+    $.ajax({
+            url: "{{ url('/get-users') }}/"+u,
+            context: document.body,
+            success: function(data){
+              console.log(data);
+                    $('#userlist').find('option').remove();
+                $.each(data.data, function(key, value) {
+                        
+                        $('#userlist').append(`<option value="${value.f_name}">${value.f_name}</option>`);
+                    
+                });
+              
+            }
+
+    });
+};
 </script>
 @endsection

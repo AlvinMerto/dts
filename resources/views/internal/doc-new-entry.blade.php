@@ -53,9 +53,9 @@ $(document).ready(function(e){
 <input type="hidden" name="type_input" id="type_input" value="internal">
 <div class="content-wrapper">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary" style="font-size: 16px; font-weight: bold; color: #fff;">New Internal Document</div>
+        <div class="col-md-8" style='margin-top: 10px;'>
+            <div class="card" style='flex-direction: unset;'>
+                <div class="card-header bg-primary" style="font-size: 20px;  color: #fff;">New Internal Document</div>
                 <div class="card-body" style="display: flex; justify-content: center;">
                    <!-- content --> 
                    		<form method="POST" action="{{ url('/internal-document/save-entry')}}" accept-charset="utf-8" enctype="multipart/form-data">
@@ -70,7 +70,7 @@ $(document).ready(function(e){
 				    			<td rowspan="5" valign="top">
 				    				<span style="margin-top: 0;">Click the box to choose file<br>or Drag your file into the box</span>
 				    					<div class="fallback">
-				    						<input class="dropzone" type="file" name="img_file" id="img_file" style="width: 200px; background: #E6E6E6;" accept="image/x-png,image/gif,image/jpeg,image/bmp,image/jpg,application/pdf" onchange="PreviewImage();">
+				    						<input class="dropzone" type="file" name="img_file" id="img_file" style=" background: #E6E6E6;" accept="image/x-png,image/gif,image/jpeg,image/bmp,image/jpg,application/pdf" onchange="PreviewImage();">
 				    					</div><br>
 
 				    					<div id="image-holder" class="photo-container" style="float: right; display: none;"><img id="image" class="photo-info ml-5 mt-1" src="" style="height: 105px; border: 1px solid #08298A; margin: 5px;box-shadow:2px 5px 5px #585858;-moz-box-shadow:2px 5px 5px #585858;-webkit-box-shadow:2px 5px 5px #585858;"/>
@@ -86,16 +86,16 @@ $(document).ready(function(e){
 				    				--}}
 				    		</tr>
 				    		<tr>
-				    			<td><input class="form-control" style="width: 200px;" type="text" name="briefer" id="briefer" value="" required placeholder="Briefer Number"></td>
+				    			<td><input class="form-control" type="text" name="briefer" id="briefer" value="" required placeholder="Briefer Number"></td>
 				    		</tr>
 				    		<tr>
-				    			<td><input class="form-control" style="width: 200px;" type="text" name="barcode" id="barcode" value="" required placeholder="Barcode Number" onblur="checkDuplicate();"></td>
+				    			<td><input class="form-control" type="text" name="barcode" id="barcode" value="" required placeholder="Barcode Number" onblur="checkDuplicate();"></td>
 				    		</tr>
 				    		<tr>
-				    			{{--<td><input class="form-control" style="width: 200px;" type="text" name="agency" id="agency" value="" required placeholder="Agency"></td>--}}
+				    			{{--<td><input class="form-control" type="text" name="agency" id="agency" value="" required placeholder="Agency"></td>--}}
 
 				    			<td>
-				    				<input list="division_datalist" name="agency" id="agency" class="form-control p-2" style="width: 200px;" required placeholder="Division/Office"></td>
+				    				<input list="division_datalist" name="agency" id="agency" class="form-control p-2" required placeholder="Division/Office"></td>
 										<datalist id="division_datalist">
 								            @if($div->count()>0)
 								            @foreach($div as $u)
@@ -108,10 +108,10 @@ $(document).ready(function(e){
 				    			</td>
 				    		</tr>
 				    		<tr>
-				    			{{--<td><input class="form-control" style="width: 200px;" type="text" name="signature" id="signature" value="" required placeholder="Signatory"></td>--}}
+				    			{{--<td><input class="form-control" type="text" name="signature" id="signature" value="" required placeholder="Sender"></td>--}}
 
 				    			<td>
-				    				<input list="user_datalist" name="signature" id="signature" class="form-control p-2" style="width: 200px;" required placeholder="Signatory"></td>
+				    				<input list="user_datalist" name="signature" id="signature" class="form-control p-2" required placeholder="Sender"></td>
 										<datalist id="user_datalist">
 								            @if($userlist->count()>0)
 								            @foreach($userlist as $u)
@@ -124,10 +124,10 @@ $(document).ready(function(e){
 				    			</td>
 				    		</tr>
 				    		<tr>
-				    			{{--<td><input class="form-control" style="width: 200px;" type="text" name="doctitle" id="doctitle" value="" required placeholder="Document Category/Type"></td>--}}
+				    			{{--<td><input class="form-control" type="text" name="doctitle" id="doctitle" value="" required placeholder="Document Category/Type"></td>--}}
 
 				    			<td>
-				    				<input list="memo_datalist" name="doctitle" id="doctitle" class="form-control p-2" style="width: 300px;" required placeholder="Document Category/Type"></td>
+				    				<input list="memo_datalist" name="doctitle" id="doctitle" class="form-control p-2" required placeholder="Document Category/Type"></td>
 										<datalist id="memo_datalist">
 								            @if($lib->count()>0)
 								            @foreach($lib as $l)
@@ -140,7 +140,7 @@ $(document).ready(function(e){
 				    			</td>
 				    		</tr>
 				    		<tr>
-				    			<td><input class="form-control mr-5" style="width: 300px;" type="text" name="docdesc" id="docdesc" value="" required placeholder="Subject/Description"></td>
+				    			<td><input class="form-control mr-5" type="text" name="docdesc" id="docdesc" value="" required placeholder="Subject/Description"></td>
 				    		</tr>
 				    		<tr>
 				    			<td>
@@ -154,7 +154,7 @@ $(document).ready(function(e){
 				    		</tr>
 				    		<tr>
 				    			<td>
-				    				<input type="checkbox" name="chkdocreturn" id="chkdocreturn" class="checkbox-success" style="vertical-align: text-bottom;"> Return this Document
+				    				<label> <input type="checkbox" name="chkdocreturn" id="chkdocreturn" class="checkbox-success" style="vertical-align: text-bottom;"> Return this Document </label>
 				    			</td>
 				    		</tr>
 
@@ -194,7 +194,7 @@ $(document).ready(function(e){
 
 
 				    		<tr>
-				    			<td colspan="2"><button type="submit" class="btn btn-success" style="padding-left: 20px; padding-right: 20px; float: right;"><span class="fa fa-floppy-o" aria-hidden="true"></span> Save</button></td>
+				    			<td><button type="submit" class="btn btn-primary bg-primary btn-sm" style="padding-left: 20px; padding-right: 20px;"><span class="fa fa-floppy-o" aria-hidden="true"></span> Save</button></td>
 				    		</tr>
 				    	</table>
 				    </form>

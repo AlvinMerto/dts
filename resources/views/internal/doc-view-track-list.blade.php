@@ -205,12 +205,19 @@ margin-top: 10px;
 
 </style>
 
-<input type="hidden" name="type_input" id="type_input" value="internal">
+<!--input type="hidden" name="type_input" id="type_input" value="internal"-->
 <div class="content-wrapper ml-2" style="width: 115%">
     <div class="row justify-content-center" style="width: 100%">
         <div class="col-md-8">
             <div class="card mt-3" style=" margin-bottom: 50px;">
-                <!--div class="card-header bg-default" style="font-size: 17px; font-weight: normal; color: #666;"--> <h4 style="margin-left: 14px; margin-top: 18px;border-bottom: 1px solid #ccc;padding-bottom: 15px; margin-bottom:0px;"> Internal Document Lists </h4> <!--/div-->
+                <!--div class="card-header bg-default" style="font-size: 17px; font-weight: normal; color: #666;"-->
+                <?php if ($window == "external") { ?>
+                    <input type="hidden" name="type_input" id="type_input" value="external">
+                    <h4 style="margin-left: 14px; margin-top: 18px;border-bottom: 1px solid #ccc;padding-bottom: 15px; margin-bottom:0px;"> External Document Lists </h4>
+                <?php } else { ?>
+                    <input type="hidden" name="type_input" id="type_input" value="internal">
+                    <h4 style="margin-left: 14px; margin-top: 18px;border-bottom: 1px solid #ccc;padding-bottom: 15px; margin-bottom:0px;"> Internal Document Lists </h4>
+                <?php } ?>
                     <div class="card-body" style="display: flex; justify-content: center; padding-top:0px;">
 
                         <section style="width: 100%">
@@ -246,16 +253,14 @@ margin-top: 10px;
                                             <td align="left" >{{$d->type}}</td-->
                                             <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Sender</td>
                                             <td align="left" style="font-weight: bold;font-size: 14px !important;" >{{$d->signatory}}</td>
-                                        </tr>
-
-                                        <tr class="border_bottom">
+                                        
                                             <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Category</td>
                                             <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->doctitle}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
                                             <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Description</td>
-                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{ $d->description }}</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important; white-space: pre-wrap;">{{ $d->description }}</td>
                                         </tr>
 
                                     </table>
@@ -309,16 +314,14 @@ margin-top: 10px;
                                             <td align="left" >{{$d->type}}</td-->
                                             <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Sender</td>
                                             <td align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->signatory}}</td>
-                                        </tr>
-
-                                        <tr class="border_bottom">
+                                        
                                             <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Document Category</td>
                                             <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{$d->doctitle}}</td>
                                         </tr>
 
                                         <tr class="border_bottom">
                                             <td align="center" class="card-header" style="padding: 10px; color: #0B4C5F; font-size: 13px !important; text-align: right;">Description</td>
-                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important;">{{ $d->description }}</td>
+                                            <td colspan="3" align="left" style="font-weight: bold;font-size: 14px !important; white-space: pre-wrap;">{{ $d->description }}</td>
                                         </tr>
 
                                     </table>
@@ -598,17 +601,30 @@ margin-top: 10px;
                                             <td colspan="5" style="padding: 0px;padding-bottom: 15px;">
                                                 <button onclick="export_excel();" class="btnExport btn btn-medium btn-default" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button> 
 
-                                                <a href="{{ url('/internal-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> New Internal Entry</a>
+                                                 <?php if ($window == "external") { ?>
+                                                    <a href="{{ url('/external-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> New External Entry</a>
+                                                <?php } else { ?>
+                                                    <a href="{{ url('/internal-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> New Internal Entry</a>
+                                                <?php } ?>
 
                                                 <button id="{{$d->ref_id}}" class="btn-ff btn btn-default pl-3 pr-3" style="font-size: 12px; float: right; margin-right: 10px;"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</button>
 
-                                                <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right; margin-right: 10px;" class="btn btn-medium btn-default"><i class="fa fa-chevron-left"></i> Back</a>
+                                                 <?php if ($window == "external") { ?>
+                                                    <a href="{{url('/external-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                <?php } else { ?>
+                                                    <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                <?php } ?>
+                                                <!--a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right; margin-right: 10px;" class="btn btn-medium btn-default"><i class="fa fa-chevron-left"></i> Back</a-->
                                             </td>
                                         @else
                                             <td colspan="5" style="padding: 0px;padding-bottom: 15px;">
                                                 <button onclick="export_excel();" class="btnExport btn btn-medium btn-default" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
 
-                                                <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                <?php if ($window == "external") { ?>
+                                                    <a href="{{url('/external-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                <?php } else { ?>
+                                                    <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                <?php } ?>
                                         @endif
                                     </tr>
                                 </table>

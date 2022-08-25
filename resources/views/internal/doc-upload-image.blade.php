@@ -111,7 +111,7 @@ $(document).ready(function(e){
                                 </tr>
                                 <tr>
                                     <td align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Briefer Number</td>
-                                   <td colspan="6" align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Signatory</td>
+                                   <td colspan="6" align="center" style="padding: 10px; background-color: #3b5998; color: #fafafa; font-weight: bold;">Sender</td>
                                  </tr>
                                 <tr class="border_bottom">
                                     <td align="center" >{{$d->briefer_number}}</td>

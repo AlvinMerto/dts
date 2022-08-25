@@ -56,6 +56,7 @@ Route::post('/external-document/forward/{id}',[ExternalController::class, 'ff_do
 
 Route:: get('/external-document-list-view-sort-az',[ExternalController::class, 'list_document_ascending']);
 
+// individual tracking list :: external
 Route::get('/external-document-track-list-view/view-document-tracking/{id}',[ExternalController::class, 'track_list_document']);
 
 Route::post('/external-document/doc-tracking-complete/{id}',[ExternalController::class, 'tracking_complete']);
@@ -115,6 +116,7 @@ Route:: get('/internal-document-list-view-sort-az',[InternalController::class, '
 
 Route::post('/internal-document/forward/{id}',[InternalController::class, 'ff_doc']);
 
+// internal document tracking list
 Route::get('/internal-document-track-list-view/view-document-tracking/{id}',[InternalController::class, 'track_list_document']);
 
 Route::post('/internal-document/doc-tracking-complete/{id}',[InternalController::class, 'tracking_complete']);

@@ -23,10 +23,10 @@ class InternalController extends Controller
         $this->middleware('auth');
     }
 
-
     public function new_document()
     {
         $userlist = DB::table('users')
+                    ->where("division","<>",null)
                     ->orderBy('users.f_name')
                     ->get();
 
@@ -1400,7 +1400,7 @@ class InternalController extends Controller
                 $diff,
                 $request->get('division'),
                 'pending',
-                Auth::user()->f_name. ' forwarded this document to '.$request->get('confi'),
+                Auth::user()->f_name. ' forwarded to '.$request->get('confi'),
                 $request->get('_classification'),
                 0,
 
@@ -2191,7 +2191,8 @@ class InternalController extends Controller
 
         //dd($data);
 
-        return view('internal.doc-view-track-list', compact('papcode','data', 'uname','datefilter','docimages','lib','div','userlist'));
+        $window = "internal";
+        return view('internal.doc-view-track-list', compact('papcode','data', 'uname','datefilter','docimages','lib','div','userlist', "window"));
     }
 
     public function edit_docs_details($ref_id)

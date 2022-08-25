@@ -91,7 +91,7 @@ border: 1px solid #e6e6e6;
     }
 
     .highprio {
-        background: #D2D462;
+        background: #F00;
         color: #fff;
         padding: 6px;
         text-align: center;
@@ -99,7 +99,7 @@ border: 1px solid #e6e6e6;
     }
 
     .modprio {
-         background: #BC5090;
+         background: #3549B5;
         color: #fff;
         padding: 6px;
         text-align: center;
@@ -136,7 +136,7 @@ border: 1px solid #e6e6e6;
     <div class="row justify-content-center" style="width: 100%">
         <div class="col-md-8" style="width: 100%">
             <div class="card mt-3">
-                <div style="font-size: 18px;  color: #3b5998;font-weight: normal;" class="card-header">Internal Document Lists</div>
+                <div style="font-size: 18px;  color: #3b5998;font-weight: normal;" class="card-header"> Internal Document Lists</div>
                 	<div class="card-body" style="display: flex; justify-content: center;">
 
     					<section style="width: 100%">
@@ -209,6 +209,7 @@ border: 1px solid #e6e6e6;
     								<th>Action</th>
     							</tr>
 
+                                <?php $priority = null; ?>
     							@foreach($data as $d)
                                 <tr>
                                     @if($d->actioned == 0)
@@ -541,6 +542,7 @@ border: 1px solid #e6e6e6;
                                             @endif
                                         @endif
                                     @endif
+                                        <?php if ($priority != null): ?>
                                             <td>{{date('M d, Y', strtotime($d->doc_receive))}}</td>
                                             <td>{{$d->barcode}}</td>
                                             <td>{{$d->doctitle}}</td>
@@ -553,6 +555,7 @@ border: 1px solid #e6e6e6;
                                                     echo "<p class='{$class}'>".$priority."</p>"; 
                                                 ?>
                                             </td>
+                                        <?php endif; ?>
                                     @if($d->days_count>5)
                                         <!--td align="center">
                                             @if($d->confi_name == Auth::user()->f_name && $d->classification == 1 || $d->classification == 1 && Auth::user()->access_level==5)

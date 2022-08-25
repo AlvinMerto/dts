@@ -290,7 +290,7 @@ class HomeController extends Controller
 
            $data = DB::table("users")
                      ->where(['users.id'=>$id])
-                     ->update(['users.division'=>'']);
+                     ->update(['users.division'=>null]);
 
            return response()->json(["updatedrow" => $data]);
         }

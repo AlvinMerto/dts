@@ -1866,7 +1866,11 @@ class ExternalController extends Controller
                         'actioned' => 1,
                     ]);
 
-        return view('external.doc-view-track-list', compact('papcode','data','docimages','userlist','lib','div'));
+        $window = "external";
+     // return view('external.doc-view-track-list', compact('papcode','data','docimages','userlist','lib','div'));
+        return view('internal.doc-view-track-list', compact('papcode','data','docimages','userlist','lib','div','window'));
+    // return view('internal.doc-view-track-list', compact('papcode','data', 'uname','datefilter','docimages','lib','div','userlist'));
+
     }
 
 
