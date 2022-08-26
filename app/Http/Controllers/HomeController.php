@@ -284,6 +284,15 @@ class HomeController extends Controller
         }
     }
 
+    public function addname(Request $req) {
+        if (request()->ajax()) {
+            
+             $data = DB::insert('insert into users (f_name) values (?)',[$req->input("fullname")]);
+
+             return response()->json(['inserted' => $data]);
+        }
+    }
+
     public function setuserinactive(Request $req) {
         if (request()->ajax()) {
            $id = $req->input("id");
@@ -406,6 +415,11 @@ class HomeController extends Controller
                     ->paginate(25)
                     ->onEachSide(2);
 
+        $thedivs = DB::table('users')
+                    ->orderBy('users.f_name')
+                    ->paginate(25)
+                    ->onEachSide(2);
+
         $docs = DB::table('internals')
             ->get();
 
@@ -445,7 +459,7 @@ class HomeController extends Controller
                 ->orderBy('users.f_name','asc')
                 ->get();
 
-        return view('admin.admin-control',compact('data','papcode','userlist','datefilter','employees'));
+        return view('admin.admin-control',compact('data','papcode','userlist','datefilter','employees','thedivs'));
     }
 
     public function view_library()

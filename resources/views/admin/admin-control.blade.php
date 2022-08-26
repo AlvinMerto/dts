@@ -56,6 +56,26 @@ $(document).ready(function(e){
         vertical-align: top;
         font-weight: bold;
     }
+
+    .whiteboxes {
+
+    }
+
+    .whiteboxes input[type="text"]{
+        background: none !important;
+    }
+
+   .input-group-btn button {
+      background: none !important;
+    }
+
+    .userslist thead tr {
+        background: #ccc;
+    }
+
+    .userslist thead tr th {
+          font-size: 15px;
+    }
 </style>
 
 <input type="hidden" name="type_input" id="type_input" value="adminv">
@@ -63,8 +83,8 @@ $(document).ready(function(e){
     <div class="row justify-content-center" style="width: 100%">
         <div class="col-md-8" style="width: 100%">
             <div class="card mt-3">
-                <div class="card-header bg-primary" style="font-size: 16px; font-weight: bold; color: #fff;">Employees Lists</div>
-                    <div class="card-body" style="display: flex; justify-content: center;">
+                <div class="card-header bg-default" style="font-size: 17px;  color: #6a6868;font-weight: normal;">Employees Lists | <a href='#' id='addnewbtn'/> Add New </a></div>
+                    <div class="card-body" style="display: flex; justify-content: center; padding: 0px;">
 
                         <section style="width: 100%">
                             @if($data->count()>0)
@@ -73,9 +93,9 @@ $(document).ready(function(e){
 
                                     <tr>
                                         <td class="d-flex" style="border-bottom: 1px solid #0080FF;">
-                                              <div class="sidebar-form" style="width: 200px; margin-left: 5px;">
-                                                    <div class="input-group">
-                                                        <input list="typelists" placeholder="Filter by Division" name="division" id="division" class="form-control">
+                                            <div class="sidebar-form" style="width: 200px; margin-left: 5px; border-color: #bbb;">
+                                                    <div class="input-group whiteboxes">
+                                                        <input list="typelists" type='text' placeholder="Filter by Division" name="division" id="division" class="form-control">
                                                         <span class="input-group-btn">
                                                             <button type="submit" name="search" id="search-btn-type" class="searchbtn-type btn btn-flat" >
                                                               <i class="fa fa-search"></i>
@@ -92,9 +112,9 @@ $(document).ready(function(e){
                                                 </div>
 
                                         
-                                              <div class="sidebar-form" style="width: 200px; margin-left: 5px;">
-                                                    <div class="input-group">
-                                                        <input list="userlist" placeholder="Filter by Employee" name="employee" id="employee" class="form-control">
+                                            <div class="sidebar-form" style="width: 200px; margin-left: 5px; border-color: #bbb;">
+                                                    <div class="input-group whiteboxes">
+                                                        <input list="userlist" type='text' placeholder="Filter by Employee" name="employee" id="employee" class="form-control">
                                                         <span class="input-group-btn">
                                                             <button type="submit" name="search" id="search-btn-type" class="searchbtn-employee btn btn-flat" >
                                                               <i class="fa fa-search"></i>
@@ -108,7 +128,9 @@ $(document).ready(function(e){
                                                                 @endif
                                                             </datalist>
                                                     </div>
-                                                </div>
+                                            </div>
+                                            
+                                            
                                             
                                         </td>
                                         
@@ -120,13 +142,13 @@ $(document).ready(function(e){
                         <!--Content-->
 
                             <table style="align-self: center; table-layout: inherit;" class='userslist'>
-                                <tr>
-                                    <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Name</td>
-                                    <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Email</td>
-                                    <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Designation</td>
-                                    <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Division</td>
-                                    <td style="font-size: 16px !important; background: #0B2F3A; font-weight: bold; color: #fff; padding: 20px;">Action</td>
-                                </tr>
+                                <thead>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Designation</th>
+                                    <th>Division</th>
+                                    <th>Action</th>
+                                </thead>
 
                                 <?php $thedivision = []; ?>
 
@@ -152,10 +174,10 @@ $(document).ready(function(e){
                                 ?>
                                 <tr class='<?php echo $class; ?>'>
                                         
-                                        <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->f_name}}</td>
-                                        <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->email}}</td>
-                                        <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->position}}</td>
-                                        <td style="border-bottom: 1px solid #E6E6E6; padding-top: 15px; padding-bottom: 15px;">{{$user->division}} </td>
+                                        <td>{{$user->f_name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->position}}</td>
+                                        <td>{{$user->division}} </td>
                                         <td>
                                             <a href="javascript:void(0);" class="alevel btn btn-small btn-primary mr-3" id="{{$user->id}}" data-status='{{$class}}' data-email='{{$user->email}}' data-fullname='{{$user->f_name}}'>
                                                 <span class="fa fa-expeditedssl" aria-hidden="true"></span> see actions
@@ -163,6 +185,23 @@ $(document).ready(function(e){
                                         </td>                             
                                 </tr>
                                 @endforeach
+                                <?php 
+                                    if (isset($thedivs)) {
+                                        $thenewdivs = [];
+
+                                        foreach($thedivs as $td) {
+                                            if (count($thenewdivs) > 0) {
+                                                if (!in_array($td->division, $thenewdivs)) {
+                                                    array_push($thenewdivs,$td->division);
+                                                }
+                                            } else {
+                                                array_push($thenewdivs,$td->division);
+                                            }
+                                        }
+
+                                        $thedivision = $thenewdivs;
+                                    }
+                                ?>
                             </table>
 
                             @else
@@ -170,7 +209,7 @@ $(document).ready(function(e){
                             @endif
 
                             @if($userlist->count() > 0)
-                                <div class="justify-content-center" style="font-size: 10px; margin-top: 10px; margin-bottom: 50px;">{{ $userlist->links() }}</div>
+                                <div class="justify-content-center" style="font-size: 10px; margin-top: 10px; margin-bottom: 50px; padding-left: 15px;">{{ $userlist->links() }}</div>
                             @endif
                         <!--Content End-->
                         </section>
@@ -187,7 +226,7 @@ $(document).ready(function(e){
   <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
     <div class="modal-content">
       <div class="modal-header"><span style="font-size: 18px; color: #0B2161; text-align: center;"><strong>SET ACCESS LEVEL </strong> <small class='statustxt' style='color:red;'> </small></span>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.reload();"><span aria-hidden="true">&times;</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closemodal('set-access');"><span aria-hidden="true">&times;</span>
         </button>
       </div>
       <span id="form_result"></span>
@@ -240,6 +279,7 @@ $(document).ready(function(e){
         <tr>
             <td style="text-align: right;padding-top: 0px;padding-right: 20px; width: 25%;"> <h4> Set as active </h4> </td>
             <td> 
+
                 <select class='btn btn-default' id='officeactive'>
                     <?php 
                         foreach($thedivision as $td) {
@@ -280,6 +320,30 @@ $(document).ready(function(e){
 </div>
 </div>
 
+<div class="modal fade" id="addnew" tabindex="-1" role="dialog"aria-labelledby="edit-modal-label" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" style="min-width: auto; max-width: 50%"  role="document">
+    <div class="modal-content">
+      <div class="modal-header"><span style="font-size: 18px; color: #0B2161; text-align: center;"><strong> Add New </strong> <small class='statustxt' style='color:red;'> </small></span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closemodal('addnew');"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <table border="1px #fff solid;" style="align-self: center;" class='settingstbl'>
+        <tbody>
+            <tr>
+                <td>
+                    <input type='text' id='thefullname_modal' class='form-control' placeholder="Fullname" />
+                </td>
+            </tr>
+            <tr>
+                <td> 
+                    <button class='btn btn-primary' id='addnewemp'> Add </button>
+                </td>
+            </tr>   
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <script src="{{ asset('js/moment.min.js') }}"></script>
 <script>
     $(document).ready(function() {
@@ -305,6 +369,14 @@ $(document).ready(function(e){
             $('input#_id').val(id);
             $('#set-access').modal('show'); 
 
+        });
+
+        $(document).on("click","#addnewbtn",function(){
+            $("#addnew").modal("show");
+        });
+
+        $(document).on("click","#addnewemp",function(){
+            addnewempfunc();
         });
 
         $(document).on("click",".setinactive", function(){
@@ -412,6 +484,30 @@ $(document).ready(function(e){
             });
         });
     });
+    
+    function closemodal(window) {
+        $("#"+window).modal("hide");
+    }
+
+    function addnewempfunc() {
+        var thefullname = $(document).find("#thefullname_modal").val();
+
+        var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url : "{{ url('/admin/addname') }}",
+                type: "POST",
+                data : { _token: CSRF_TOKEN , fullname: thefullname },
+                dataType: "json",
+                success : function(data) {
+                    alert("New employee added");
+                    window.location.reload();
+                }, error: function() {
+                    alert('error adding new employee');
+                }
+            });
+
+    }
 
     $(document).ready(function(){
         $(document).on("click",".btn_save", function(){

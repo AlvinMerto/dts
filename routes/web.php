@@ -276,6 +276,7 @@ Route::post("/admin/setasactive", [HomeController::class, 'setasactive']);
 Route::post("/admin/updateemail", [HomeController::class,"updateemail"]);
 Route::post("/admin/updatepassword",[SettingController::class,"updatepassword"]);
 Route::post("/admin/updatefullname",[HomeController::class,"updatefullname"]);
+Route::post("/admin/addname", [HomeController::class,"addname"]);
 
 Route::post('/admin/access-level/{id}',[HomeController::class, 'admin_users_control_edit']);
 

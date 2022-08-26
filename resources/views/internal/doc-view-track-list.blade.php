@@ -381,7 +381,8 @@ margin-top: 10px;
                                                                         $rems = explode(",",$data[$i]->remarks); 
                                                                         $remarks = null;
 
-                                                                        if ( preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/',$rems[count($rems)-1]) == 1) {
+                                                                        //if ( preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/',$rems[count($rems)-1]) == 1) {
+                                                                        if ( $rems[count($rems)-1][0] != "*" ) {
                                                                             $remarks = $rems[count($rems)-1];
                                                                             unset($rems[count($rems)-1]);
                                                                         } 
