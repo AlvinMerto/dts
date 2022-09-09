@@ -129,6 +129,24 @@ border: 1px solid #e6e6e6;
         text-align: center;
         border-radius: 99px;
     }
+
+    .thedatenavs {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .thedatenavs li{
+        display: inline-block;
+        margin-right: 2px;
+        font-size: 14px;
+        color: #737373;
+        border: 1px solid #ccc;
+        padding: 7px;
+    }
+
+    .thedatenavs li:hover{
+        background: #f1f1f1;
+    }
 </style>
 
 <input type="hidden" name="type_input" id="type_input" value="internal">
@@ -136,20 +154,9 @@ border: 1px solid #e6e6e6;
     <div class="row justify-content-center" style="width: 100%">
         <div class="col-md-8" style="width: 100%">
             <div class="card mt-3">
-                <div style="font-size: 18px;  color: #3b5998;font-weight: normal;" class="card-header"> Internal Document Lists</div>
-                	<div class="card-body" style="display: flex; justify-content: center;">
-
-    					<section style="width: 100%">
-                            @if($data->count()>0)
-    						      <!-- search form   -->
-
-								<table>
-                                    <tr>
-                                        <input type="hidden" id="q_user_level" name="q_user_level" class="form-control" value="{{ Auth::user()->access_level }}">
-
-
-                                        <td class="d-flex" style='padding-left: 0px !important; padding-top: 0px !important;'>
-                                              <div class="sidebar-form borderwhite" style="width: 200px; margin-left: 5px;">
+                <div style="font-size: 18px; color: #3b5998; font-weight: normal;" class="card-header"> Internal Document Lists 
+                                            <div style='display: flex;'>
+                                                <div class="sidebar-form borderwhite" style="width: 200px; margin-left: 5px;">
                                                     <div class="input-group whiteboxes">
                                                         <input type="text" id="q" name="q" class="form-control" placeholder="Barcode search...">
                                                         <span class="input-group-btn">
@@ -177,6 +184,31 @@ border: 1px solid #e6e6e6;
                                                             </datalist>
                                                     </div>
                                                 </div>
+                                            </div>
+                </div>
+                	<div class="card-body" style="display: flex; justify-content: center;">
+
+    					<section style="width: 100%">
+                            
+    						      <!-- search form   -->
+
+								<table>
+                                    <tr>
+                                        <input type="hidden" id="q_user_level" name="q_user_level" class="form-control" value="{{ Auth::user()->access_level }}">
+
+                                        <?php $date = date("Y-m-d"); $today = "?date=".$date; ?>
+                                        <td class="d-flex" style='padding-left: 0px !important; padding-top: 0px !important; overflow-x: auto;'>
+                                            <ul class='thedatenavs'>
+                                                <a href='<?php echo $today; ?>'/> <li style="font-size: 15px;font-weight: bold;color: #f2f2f2;background: #18a43b;"> Today - <?php echo date("M. d, Y"); ?></li> </a>
+                                                <?php
+                                                    for($i = 1 ; $i <= 4; $i++) {
+                                                        $thedates = date("Y-m-d", strtotime("-{$i} days"));
+                                                        echo "<a href='?date={$thedates}'/><li>";
+                                                            echo date("D - M. d, Y", strtotime("-{$i} days"));
+                                                        echo "</li></a>";
+                                                    }
+                                                ?>
+                                            </ul>
                                         </td>
                                         <td>
                                             <div class="d-flex" style="float: right;">
@@ -194,7 +226,7 @@ border: 1px solid #e6e6e6;
 								    
 								      <!-- /.search form -->
     					<!--Content-->
-                        
+                            @if($data->count()>0)
 
     						<table class='theinnertbl'>
     							<tr class="border_bottom">

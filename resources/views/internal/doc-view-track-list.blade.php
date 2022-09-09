@@ -506,7 +506,14 @@ margin-top: 10px;
 
                                        </table>
 
-                                       
+                                       <div style="border-color: #ccc;padding: 13px 0px;border-bottom: 1px solid #ccc;/*! margin-top: 8px; */background: #ddd;"/>
+                                       <button id="{{$d->ref_id}}" class="btn-ff btn btn-primary pl-3 pr-3" style="font-size: 12px; margin-right: 10px; margin-left:5px;"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</button>
+                                       <?php if ($window == "external") { ?>
+                                            <a href="{{url('/external-document-list-view')}}" style="font-size: 12px; " class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                        <?php } else { ?>
+                                            <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; " class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                        <?php } ?>
+                                       </div>
 
                                         <h4 style='margin-top:25px;'> History of Actions </h4>
                                         @if($data->count()>0)
@@ -599,34 +606,36 @@ margin-top: 10px;
                                 <table>
                                     <tr>
                                         @if(Auth::user()->access_level == 5)
-                                            <td colspan="5" style="padding: 0px;padding-bottom: 15px;">
+                                            <td colspan="5" style="padding: 0px;padding-bottom: 15px; padding-top: 10px;">
                                                 <button onclick="export_excel();" class="btnExport btn btn-medium btn-default" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button> 
 
                                                  <?php if ($window == "external") { ?>
                                                     <a href="{{ url('/external-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> New External Entry</a>
                                                 <?php } else { ?>
                                                     <a href="{{ url('/internal-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> New Internal Entry</a>
-                                                <?php } ?>
+                                                <?php } //else { ?>
+                                                    <!--a href="{{ url('/outgoing-document-new-entry') }}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> New Internal Entry</a-->
+                                                <?php //} ?>
+                                                
 
-                                                <button id="{{$d->ref_id}}" class="btn-ff btn btn-default pl-3 pr-3" style="font-size: 12px; float: right; margin-right: 10px;"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</button>
-
-                                                 <?php if ($window == "external") { ?>
-                                                    <a href="{{url('/external-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                <?php if ($window == "external") { ?>
+                                                    <!--a href="{{url('/external-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a-->
                                                 <?php } else { ?>
-                                                    <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                    <!--a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a-->
                                                 <?php } ?>
                                                 <!--a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right; margin-right: 10px;" class="btn btn-medium btn-default"><i class="fa fa-chevron-left"></i> Back</a-->
                                             </td>
                                         @else
-                                            <td colspan="5" style="padding: 0px;padding-bottom: 15px;">
-                                                <button onclick="export_excel();" class="btnExport btn btn-medium btn-default" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button>
+                                            <td colspan="5" style="padding: 0px;padding-bottom: 15px; padding-top: 10px;">
+                                                <!--button onclick="export_excel();" class="btnExport btn btn-medium btn-default" style="font-size: 12px; float: left;"><i class="fa fa-file-excel-o"></i> Export to Excel</button-->
 
                                                 <?php if ($window == "external") { ?>
-                                                    <a href="{{url('/external-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                    <!--a href="{{url('/external-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a-->
                                                 <?php } else { ?>
-                                                    <a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a>
+                                                    <!--a href="{{url('/internal-document-list-view')}}" style="font-size: 12px; float: right;" class="btn btn-medium btn-default"><i class="fa fa-edit"></i> Back</a-->
                                                 <?php } ?>
                                         @endif
+                                        <!--button id="{{$d->ref_id}}" class="btn-ff btn btn-primary pl-3 pr-3" style="font-size: 12px; margin-right: 10px; margin-left:5px;"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span> Action</button-->
                                     </tr>
                                 </table>
 

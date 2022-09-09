@@ -34,6 +34,7 @@ class OutgoingController extends Controller
                     ->orderBy('courier.id','asc')
                     ->get();
         
+        // return view('internal.doc-new-entry',compact('userlist','lib','div','courier'));
     	return view('outgoing.doc-new-entry',compact('userlist','lib','courier'));
     }
 
@@ -589,7 +590,12 @@ class OutgoingController extends Controller
                     ->orderBy('division','asc')
                     ->get();
 
-    	return view('outgoing.doc-view-list',compact('data','papcode','userlist','datefilter','lib','courier','div'));
+        $window = "outgoing";
+        $docimages = array();
+
+         return view('internal.doc-view-list',compact('data','papcode','userlist','datefilter','lib','courier','div'));
+        //return view('internal.doc-view-track-list', compact('papcode','data','docimages','userlist','lib','courier','div','window'));
+    	//return view('outgoing.doc-view-list',compact('data','papcode','userlist','datefilter','lib','courier','div'));
     }
 
     public function list_document_ascending()
@@ -2152,7 +2158,10 @@ class OutgoingController extends Controller
                     ]);
 
 
-        return view('outgoing.doc-view-track-list', compact('papcode','data','datefilter','userlist','docimages','lib','courier','div'));
+        $window='outgoing';
+        
+        // return view('outgoing.doc-view-track-list', compact('papcode','data','datefilter','userlist','docimages','lib','courier','div'));
+        return view('internal.doc-view-track-list', compact('papcode','data','docimages','userlist','lib','div','window','courier'));
     }
 
      public function edit_docs_details($ref_id)

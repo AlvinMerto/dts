@@ -559,6 +559,7 @@ class InternalController extends Controller
                     ->get();
 
 
+        // update the day count
         foreach ($docs as $i)
             {
                 $prevdate = $i->doc_date_ff;
@@ -574,10 +575,11 @@ class InternalController extends Controller
                                 'day_count'=>$diff,
                             ]);
             }
+        // update the day count
 
-        
         if (Auth::user()->access_level==5)
-        {
+        {   
+            if (!isset($_GET['date'])) {
             $data = DB::table('internal_departments')
                 ->join('internals','internal_departments.ff_id','=','internals.id')
                 ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
@@ -588,34 +590,83 @@ class InternalController extends Controller
                 ->groupBy('internals.barcode')
                 ->paginate(10)
                 ->onEachSide(2);
+            } else {
+                // 2021-12-01 03:23:23
+            $date = date("Y-m-d h:i:s");
+            echo "hello".$date;
+            $data = DB::table('internal_departments')
+                ->join('internals','internal_departments.ff_id','=','internals.id')
+                ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
+                ->where(['updated_at'=>$date])
+                ->orderBy('internal_history.days_count','desc')
+                ->orderBy('internal_history.actioned','asc')
+                ->orderBy('internal_history.classification','desc')
+                ->orderBy('internal_history.ref_id','desc')
+                ->groupBy('internals.barcode')
+                ->paginate(10)
+                ->onEachSide(2);
+            }
 
         }else if(Auth::user()->access_level==4){
-            $data = DB::table('internal_departments')
-                ->join('internals','internal_departments.ff_id','=','internals.id')
-                ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
-                ->where(['internal_departments.dept'=>Auth::user()->division])
-                ->where(['internal_history.department'=>Auth::user()->division])
-                ->orderBy('internal_history.days_count','desc')
-                ->orderBy('internal_history.actioned','asc')
-                ->orderBy('internal_history.classification','desc')
-                ->orderBy('internal_history.ref_id','desc')
-                ->groupBy('internals.barcode')
-                ->paginate(10)
-                ->onEachSide(2);
-
+            if (!isset($_GET['date'])) {
+                $data = DB::table('internal_departments')
+                    ->join('internals','internal_departments.ff_id','=','internals.id')
+                    ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
+                    ->where(['internal_departments.dept'=>Auth::user()->division])
+                    ->where(['internal_history.department'=>Auth::user()->division])
+                    ->orderBy('internal_history.days_count','desc')
+                    ->orderBy('internal_history.actioned','asc')
+                    ->orderBy('internal_history.classification','desc')
+                    ->orderBy('internal_history.ref_id','desc')
+                    ->groupBy('internals.barcode')
+                    ->paginate(10)
+                    ->onEachSide(2);
+            } else {
+                // 2021-12-01 03:23:23
+                $date = date("Y-m-d h:i:s");
+                echo "hello".$date;
+                $data = DB::table('internal_departments')
+                    ->join('internals','internal_departments.ff_id','=','internals.id')
+                    ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
+                    ->where(['updated_at'=>$date])
+                    ->orderBy('internal_history.days_count','desc')
+                    ->orderBy('internal_history.actioned','asc')
+                    ->orderBy('internal_history.classification','desc')
+                    ->orderBy('internal_history.ref_id','desc')
+                    ->groupBy('internals.barcode')
+                    ->paginate(10)
+                    ->onEachSide(2);
+            }
         }else{
-            $data = DB::table('internal_departments')
-                ->join('internals','internal_departments.ff_id','=','internals.id')
-                ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
-                ->where(['internal_departments.dept'=>Auth::user()->division])
-                ->where(['internal_history.department'=>Auth::user()->division])
-                ->orderBy('internal_history.days_count','desc')
-                ->orderBy('internal_history.actioned','asc')
-                ->orderBy('internal_history.classification','desc')
-                ->orderBy('internal_history.ref_id','desc')
-                ->groupBy('internals.barcode')
-                ->paginate(10)
-                ->onEachSide(2);
+            if (!isset($_GET['date'])) {
+                $data = DB::table('internal_departments')
+                    ->join('internals','internal_departments.ff_id','=','internals.id')
+                    ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
+                    ->where(['internal_departments.dept'=>Auth::user()->division])
+                    ->where(['internal_history.department'=>Auth::user()->division])
+                    ->orderBy('internal_history.days_count','desc')
+                    ->orderBy('internal_history.actioned','asc')
+                    ->orderBy('internal_history.classification','desc')
+                    ->orderBy('internal_history.ref_id','desc')
+                    ->groupBy('internals.barcode')
+                    ->paginate(10)
+                    ->onEachSide(2);
+            } else {
+                // 2021-12-01 03:23:23
+                $dd   = $_GET['date'];
+                $date = date("Y-m-d", strtotime($dd));
+                $data = DB::table('internal_departments')
+                            ->join('internals','internal_departments.ff_id','=','internals.id')
+                            ->join('internal_history','internal_departments.ff_id','=','internal_history.ref_id')
+                            ->whereDate("internals.updated_at",$date)
+                            ->orderBy('internal_history.days_count','desc')
+                            ->orderBy('internal_history.actioned','asc')
+                            ->orderBy('internal_history.classification','desc')
+                            ->orderBy('internal_history.ref_id','desc')
+                            ->groupBy('internals.barcode')
+                            ->paginate(10)
+                            ->onEachSide(2);
+            }
         }
 
         /*$papcode = DB::table('users')
