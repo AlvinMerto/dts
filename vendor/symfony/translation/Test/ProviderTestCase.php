@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Translation\Test;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\MockHttpClient;
@@ -30,7 +31,7 @@ abstract class ProviderTestCase extends TestCase
 {
     protected $client;
     protected $logger;
-    protected string $defaultLocale;
+    protected $defaultLocale;
     protected $loader;
     protected $xliffFileDumper;
 
@@ -51,26 +52,35 @@ abstract class ProviderTestCase extends TestCase
 
     protected function getClient(): MockHttpClient
     {
-        return $this->client ??= new MockHttpClient();
+        return $this->client ?? $this->client = new MockHttpClient();
     }
 
+    /**
+     * @return LoaderInterface&MockObject
+     */
     protected function getLoader(): LoaderInterface
     {
-        return $this->loader ??= $this->createMock(LoaderInterface::class);
+        return $this->loader ?? $this->loader = $this->createMock(LoaderInterface::class);
     }
 
+    /**
+     * @return LoaderInterface&MockObject
+     */
     protected function getLogger(): LoggerInterface
     {
-        return $this->logger ??= $this->createMock(LoggerInterface::class);
+        return $this->logger ?? $this->logger = $this->createMock(LoggerInterface::class);
     }
 
     protected function getDefaultLocale(): string
     {
-        return $this->defaultLocale ??= 'en';
+        return $this->defaultLocale ?? $this->defaultLocale = 'en';
     }
 
+    /**
+     * @return LoaderInterface&MockObject
+     */
     protected function getXliffFileDumper(): XliffFileDumper
     {
-        return $this->xliffFileDumper ??= $this->createMock(XliffFileDumper::class);
+        return $this->xliffFileDumper ?? $this->xliffFileDumper = $this->createMock(XliffFileDumper::class);
     }
 }
