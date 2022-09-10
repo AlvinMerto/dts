@@ -382,18 +382,8 @@ enum_case_expr:
 
 class_entry_type:
       T_CLASS                                               { $$ = 0; }
-    | class_modifiers T_CLASS                               { $$ = $1; }
-;
-
-class_modifiers:
-      class_modifier                                        { $$ = $1; }
-    | class_modifiers class_modifier                        { $this->checkClassModifier($1, $2, #2); $$ = $1 | $2; }
-;
-
-class_modifier:
-      T_ABSTRACT                                            { $$ = Stmt\Class_::MODIFIER_ABSTRACT; }
-    | T_FINAL                                               { $$ = Stmt\Class_::MODIFIER_FINAL; }
-    | T_READONLY                                            { $$ = Stmt\Class_::MODIFIER_READONLY; }
+    | T_ABSTRACT T_CLASS                                    { $$ = Stmt\Class_::MODIFIER_ABSTRACT; }
+    | T_FINAL T_CLASS                                       { $$ = Stmt\Class_::MODIFIER_FINAL; }
 ;
 
 extends_from:
@@ -571,7 +561,7 @@ type_expr:
       type                                                  { $$ = $1; }
     | '?' type                                              { $$ = Node\NullableType[$2]; }
     | union_type                                            { $$ = Node\UnionType[$1]; }
-    | intersection_type                                     { $$ = $1; }
+    | intersection_type                                     { $$ = Node\IntersectionType[$1]; }
 ;
 
 type:
@@ -585,52 +575,34 @@ type_without_static:
     | T_CALLABLE                                            { $$ = Node\Identifier['callable']; }
 ;
 
-union_type_element:
-                type { $$ = $1; }
-        |        '(' intersection_type ')' { $$ = $2; }
-;
-
 union_type:
-      union_type_element '|' union_type_element             { init($1, $3); }
-    | union_type '|' union_type_element                     { push($1, $3); }
-;
-
-union_type_without_static_element:
-                type_without_static { $$ = $1; }
-        |        '(' intersection_type_without_static ')' { $$ = $2; }
+      type '|' type                                         { init($1, $3); }
+    | union_type '|' type                                   { push($1, $3); }
 ;
 
 union_type_without_static:
-      union_type_without_static_element '|' union_type_without_static_element   { init($1, $3); }
-    | union_type_without_static '|' union_type_without_static_element           { push($1, $3); }
-;
-
-intersection_type_list:
-      type T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type   { init($1, $3); }
-    | intersection_type_list T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type
-          { push($1, $3); }
+      type_without_static '|' type_without_static           { init($1, $3); }
+    | union_type_without_static '|' type_without_static     { push($1, $3); }
 ;
 
 intersection_type:
-      intersection_type_list { $$ = Node\IntersectionType[$1]; }
-;
-
-intersection_type_without_static_list:
-      type_without_static T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type_without_static
-          { init($1, $3); }
-    | intersection_type_without_static_list T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type_without_static
+      type T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type   { init($1, $3); }
+    | intersection_type T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type
           { push($1, $3); }
 ;
 
 intersection_type_without_static:
-      intersection_type_without_static_list { $$ = Node\IntersectionType[$1]; }
+      type_without_static T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type_without_static
+          { init($1, $3); }
+    | intersection_type_without_static T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG type_without_static
+          { push($1, $3); }
 ;
 
 type_expr_without_static:
       type_without_static                                   { $$ = $1; }
     | '?' type_without_static                               { $$ = Node\NullableType[$2]; }
     | union_type_without_static                             { $$ = Node\UnionType[$1]; }
-    | intersection_type_without_static                      { $$ = $1; }
+    | intersection_type_without_static                      { $$ = Node\IntersectionType[$1]; }
 ;
 
 optional_type_without_static:
@@ -1042,7 +1014,9 @@ dereferencable_scalar:
           { $attrs = attributes(); $attrs['kind'] = Expr\Array_::KIND_LONG;
             $$ = new Expr\Array_($3, $attrs); }
     | array_short_syntax                                    { $$ = $1; }
-    | T_CONSTANT_ENCAPSED_STRING                            { $$ = Scalar\String_::fromString($1, attributes()); }
+    | T_CONSTANT_ENCAPSED_STRING
+          { $attrs = attributes(); $attrs['kind'] = strKind($1);
+            $$ = new Scalar\String_(Scalar\String_::parse($1), $attrs); }
     | '"' encaps_list '"'
           { $attrs = attributes(); $attrs['kind'] = Scalar\String_::KIND_DOUBLE_QUOTED;
             parseEncapsed($2, '"', true); $$ = new Scalar\Encapsed($2, $attrs); }
@@ -1050,7 +1024,7 @@ dereferencable_scalar:
 
 scalar:
       T_LNUMBER                                             { $$ = $this->parseLNumber($1, attributes()); }
-    | T_DNUMBER                                             { $$ = Scalar\DNumber::fromString($1, attributes()); }
+    | T_DNUMBER                                             { $$ = Scalar\DNumber[Scalar\DNumber::parse($1)]; }
     | dereferencable_scalar                                 { $$ = $1; }
     | constant                                              { $$ = $1; }
     | class_constant                                        { $$ = $1; }

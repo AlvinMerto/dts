@@ -16,7 +16,6 @@ use Illuminate\Queue\Failed\DatabaseUuidFailedJobProvider;
 use Illuminate\Queue\Failed\DynamoDbFailedJobProvider;
 use Illuminate\Queue\Failed\NullFailedJobProvider;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 use Laravel\SerializableClosure\SerializableClosure;
 
@@ -201,9 +200,7 @@ class QueueServiceProvider extends ServiceProvider implements DeferrableProvider
                     $app['log']->withoutContext();
                 }
 
-                $app->forgetScopedInstances();
-
-                return Facade::clearResolvedInstances();
+                return $app->forgetScopedInstances();
             };
 
             return new Worker(
