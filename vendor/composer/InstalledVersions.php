@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8fb37771c11ec07817f25ac1876c9d579ea76358',
+    'reference' => '9d582eab44822908dd0b329855ce20874c4f0e9a',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -77,12 +77,12 @@ private static $installed = array (
     ),
     'doctrine/inflector' => 
     array (
-      'pretty_version' => '2.0.4',
-      'version' => '2.0.4.0',
+      'pretty_version' => '2.0.5',
+      'version' => '2.0.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89',
+      'reference' => 'ade2b3bbfb776f27f0558e26eed43b5d9fe1b392',
     ),
     'doctrine/instantiator' => 
     array (
@@ -174,15 +174,6 @@ private static $installed = array (
       ),
       'reference' => 'a63e5e8f26ebbebf8ed3c5c691637325512eb0dc',
     ),
-    'firebase/php-jwt' => 
-    array (
-      'pretty_version' => 'v6.3.0',
-      'version' => '6.3.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '018dfc4e1da92ad8a1b90adc4893f476a3b41cb8',
-    ),
     'fruitcake/laravel-cors' => 
     array (
       'pretty_version' => 'v2.2.0',
@@ -191,33 +182,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '783a74f5e3431d7b9805be8afb60fd0a8f743534',
-    ),
-    'google/apiclient' => 
-    array (
-      'pretty_version' => 'v2.12.6',
-      'version' => '2.12.6.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'f92aa126903a9e2da5bd41a280d9633cb249e79e',
-    ),
-    'google/apiclient-services' => 
-    array (
-      'pretty_version' => 'v0.264.0',
-      'version' => '0.264.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '28c4208ee0b7f4d5f4704c043414b5644351280c',
-    ),
-    'google/auth' => 
-    array (
-      'pretty_version' => 'v1.21.1',
-      'version' => '1.21.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'aa3b9ca29258ac6347ce3c8937a2418c5d78f840',
     ),
     'graham-campbell/result-type' => 
     array (
@@ -504,16 +468,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8fb37771c11ec07817f25ac1876c9d579ea76358',
+      'reference' => '9d582eab44822908dd0b329855ce20874c4f0e9a',
     ),
     'laravel/sail' => 
     array (
-      'pretty_version' => 'v1.15.4',
-      'version' => '1.15.4.0',
+      'pretty_version' => 'v1.16.0',
+      'version' => '1.16.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '853dea1fa866a52a93beccc4e5affdc49b98e7d5',
+      'reference' => '73030c18b769f27e6f6aacf7848d024fa9a55560',
     ),
     'laravel/sanctum' => 
     array (
@@ -526,12 +490,12 @@ private static $installed = array (
     ),
     'laravel/serializable-closure' => 
     array (
-      'pretty_version' => 'v1.2.0',
-      'version' => '1.2.0.0',
+      'pretty_version' => 'v1.2.2',
+      'version' => '1.2.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '09f0e9fb61829f628205b7c94906c28740ff9540',
+      'reference' => '47afb7fae28ed29057fdca37e16a84f90cc62fae',
     ),
     'laravel/tinker' => 
     array (
@@ -616,12 +580,12 @@ private static $installed = array (
     ),
     'mockery/mockery' => 
     array (
-      'pretty_version' => '1.5.0',
-      'version' => '1.5.0.0',
+      'pretty_version' => '1.5.1',
+      'version' => '1.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c10a5f6e06fc2470ab1822fa13fa2a7380f8fbac',
+      'reference' => 'e92dcc83d5a51851baf5f5591d32cb2b16e3684e',
     ),
     'monolog/monolog' => 
     array (
@@ -668,12 +632,12 @@ private static $installed = array (
     ),
     'nesbot/carbon' => 
     array (
-      'pretty_version' => '2.62.0',
-      'version' => '2.62.0.0',
+      'pretty_version' => '2.62.1',
+      'version' => '2.62.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7507aec3d626797ce2123cf6c6556683be22b5f8',
+      'reference' => '01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a',
     ),
     'nette/schema' => 
     array (
@@ -695,12 +659,12 @@ private static $installed = array (
     ),
     'nikic/php-parser' => 
     array (
-      'pretty_version' => 'v4.14.0',
-      'version' => '4.14.0.0',
+      'pretty_version' => 'v4.15.1',
+      'version' => '4.15.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '34bea19b6e03d8153165d8f30bba4c3be86184c1',
+      'reference' => '0ef6c55a3f47f89d7a374e6f835197a0b5fcf900',
     ),
     'nunomaduro/collision' => 
     array (
@@ -719,24 +683,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '3d81e4309d2a927abbe66df935f4bb60082805ad',
-    ),
-    'paragonie/constant_time_encoding' => 
-    array (
-      'pretty_version' => 'v2.6.3',
-      'version' => '2.6.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '58c3f47f650c94ec05a151692652a868995d2938',
-    ),
-    'paragonie/random_compat' => 
-    array (
-      'pretty_version' => 'v9.99.100',
-      'version' => '9.99.100.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '996434e5492cb4c3edcb9168db6fbb1359ef965a',
     ),
     'phar-io/manifest' => 
     array (
@@ -774,23 +720,14 @@ private static $installed = array (
       ),
       'reference' => 'dc5ff11e274a90cc1c743f66c9ad700ce50db9ab',
     ),
-    'phpseclib/phpseclib' => 
-    array (
-      'pretty_version' => '3.0.14',
-      'version' => '3.0.14.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '2f0b7af658cbea265cbb4a791d6c29a6613f98ef',
-    ),
     'phpunit/php-code-coverage' => 
     array (
-      'pretty_version' => '9.2.16',
-      'version' => '9.2.16.0',
+      'pretty_version' => '9.2.17',
+      'version' => '9.2.17.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2593003befdcc10db5e213f9f28814f5aa8ac073',
+      'reference' => 'aa94dc41e8661fe90c7316849907cba3007b10d8',
     ),
     'phpunit/php-file-iterator' => 
     array (
@@ -836,15 +773,6 @@ private static $installed = array (
       array (
       ),
       'reference' => 'd0aa6097bef9fd42458a9b3c49da32c6ce6129c5',
-    ),
-    'psr/cache' => 
-    array (
-      'pretty_version' => '3.0.0',
-      'version' => '3.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'aa5030cfa5405eccfdcb1083ce040c2cb8d253bf',
     ),
     'psr/container' => 
     array (
@@ -939,8 +867,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1154,15 +1082,6 @@ private static $installed = array (
       array (
       ),
       'reference' => 'a6ad58897a6d97cc2d2cd2adaeda343b25a368ea',
-    ),
-    'spatie/laravel-google-calendar' => 
-    array (
-      'pretty_version' => '3.5.1',
-      'version' => '3.5.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '113dba30c70705790ba1ae1e726307d2dc1d12c6',
     ),
     'swiftmailer/swiftmailer' => 
     array (
